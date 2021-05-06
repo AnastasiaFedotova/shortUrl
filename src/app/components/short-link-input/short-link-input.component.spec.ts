@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputComponent } from './input.component';
+import { ShortLinkInputComponent } from './short-link-input.component';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+describe('ShortLinkInputComponent', () => {
+  let component: ShortLinkInputComponent;
+  let fixture: ComponentFixture<ShortLinkInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputComponent ]
+      declarations: [ ShortLinkInputComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(ShortLinkInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
