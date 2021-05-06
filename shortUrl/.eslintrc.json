@@ -3,9 +3,6 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
-  "eslint.workingDirectories": [
-    {"directory": "./client", "changeProcessCWD": true}
-  ],
   "overrides": [
     {
       "files": [
