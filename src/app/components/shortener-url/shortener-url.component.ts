@@ -10,7 +10,7 @@ import { Link } from './../../link';
 })
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm : FormGroup;
-  shortLink : Link;
+  shortLink : string;
   reg : RegExp = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 
   constructor(private httpService: LinksServiceService) {
@@ -29,7 +29,7 @@ export class ShortenerUrlComponent implements OnInit {
 
     this.httpService.generateLink(link).subscribe(
       (data: Link) => {
-        this.shortLink = data;
+        this.shortLink = data.url;
       },
       error => console.log(error)
     );
