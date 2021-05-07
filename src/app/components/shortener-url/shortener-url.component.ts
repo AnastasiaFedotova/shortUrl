@@ -11,11 +11,11 @@ import { Link } from './../../link';
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm : FormGroup;
   shortLink : string;
-  reg : RegExp = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+  regUrl : RegExp = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 
   constructor(private httpService: LinksServiceService) {
     this.shortenerForm = new FormGroup({
-      'url': new FormControl("", [Validators.required, Validators.pattern(this.reg)])
+      'url': new FormControl("", [Validators.required, Validators.pattern(this.regUrl)])
     });
   }
 
