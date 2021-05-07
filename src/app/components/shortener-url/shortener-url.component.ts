@@ -11,12 +11,25 @@ import { Link } from '../../interface/link';
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm : FormGroup;
   shortLink : string;
-  regUrl : RegExp = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+  isValidHttpUrl;
 
   constructor(private httpService: LinksServiceService) {
+    this.isValidHttpUrl = function(control: FormControl) : {[s:string]: boolean} {
+      try {
+        if (control.value) {
+          new URL(control.value);
+        }
+        return null;
+      } catch (_) {
+        return {"isUrl": true};
+      }
+    }
+
     this.shortenerForm = new FormGroup({
-      'url': new FormControl("", [Validators.required, Validators.pattern(this.regUrl)])
+      'url': new FormControl("", [Validators.required, this.isValidHttpUrl])
     });
+
+    console.log(this.shortenerForm)
   }
 
   ngOnInit(): void {

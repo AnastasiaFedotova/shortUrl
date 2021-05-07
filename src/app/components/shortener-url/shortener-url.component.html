@@ -2,8 +2,8 @@
   <mat-form-field appearance="outline">
     <mat-label>Enter link</mat-label>
     <input matInput type="url" required placeholder="http://Google.com" name="url" formControlName="url">
-    <mat-error *ngIf="shortenerForm.controls.url.hasError('pattern')">
-      Url Pattern Invalid
+    <mat-error *ngIf="shortenerForm.controls.url.hasError('isUrl') && !shortenerForm.controls.url.untouched">
+      Invalid url
     </mat-error>
   </mat-form-field>
   <button mat-stroked-button [disabled]="shortenerForm.invalid">
