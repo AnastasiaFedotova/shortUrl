@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LinksServiceService } from 'src/app/services/links-service.service';
-import { Link } from './../../link';
+import { Link } from '../../interface/link';
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
