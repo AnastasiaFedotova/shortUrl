@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LinksServiceService } from 'src/app/services/links-service.service';
-import { Link } from '../../interface/link';
+import { Links } from '../../interface/link';
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
@@ -9,19 +9,19 @@ import { Link } from '../../interface/link';
   providers: [LinksServiceService]
 })
 export class ShortenerUrlComponent implements OnInit {
-  shortenerForm : FormGroup;
-  shortLink : string;
+  shortenerForm: FormGroup;
+  shortLink: string;
   isValidHttpUrl;
 
   constructor(private httpService: LinksServiceService) {
-    this.isValidHttpUrl = function(control: FormControl) : {[s:string]: boolean} {
+    this.isValidHttpUrl = function (control: FormControl): { [s: string]: boolean } {
       try {
         if (control.value) {
           new URL(control.value);
         }
         return null;
       } catch (_) {
-        return {"isUrl": true};
+        return { "isUrl": true };
       }
     }
 
@@ -37,12 +37,15 @@ export class ShortenerUrlComponent implements OnInit {
 
   submit() {
     const link = {
-      url: this.shortenerForm.value.url
+      original_url: this.shortenerForm.value.url,
+      short_url: null,
+      user_id: null,
+      view_count: null
     };
 
     this.httpService.generateLink(link).subscribe(
-      (data: Link) => {
-        this.shortLink = data.url;
+      (data: Links) => {
+        this.shortLink = data.short_url;
       },
       error => console.log(error)
     );
