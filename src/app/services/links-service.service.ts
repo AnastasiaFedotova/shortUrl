@@ -11,6 +11,6 @@ export class LinksServiceService {
   generateLink(link: Links) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json;charset=utf-8');
 
-    return this.http.post('http://localhost:3000/api/v1', link, { headers: headers });
+    return this.http.post('http://localhost:3000/api/v1/links', link, { headers: headers });
   }
 }
