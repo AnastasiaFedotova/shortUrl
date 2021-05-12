@@ -1,0 +1,20 @@
+<form [formGroup]="registrationrForm" class="registration-form" (submit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter LOGIN</mat-label>
+    <input matInput type="login" required placeholder="login" name="login" formControlName="login">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Enter password</mat-label>
+    <input matInput type="password" required placeholder="password" name="password" formControlName="password">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Repeat password</mat-label>
+    <input matInput type="password" required placeholder="Repeat password" name="verification" formControlName="verification">
+    <mat-error *ngIf="registrationrForm.controls.verification.hasError('match') && !registrationrForm.controls.verification.untouched">
+      Password mismatch
+    </mat-error>
+  </mat-form-field>
+  <button mat-stroked-button [disabled]="registrationrForm.invalid">
+    ok
+  </button>
+</form>
