@@ -11,28 +11,45 @@ import { UserRegistrationService } from 'src/app/services/user-registration.serv
 })
 
 export class UserRegestrarionFormComponent implements OnInit {
-  registrationrForm: FormGroup;
-  isValidPassword;
+  registrationForm: FormGroup;
   registrationMessage: string;
+  matchPasswords;
+  isValidPassword;
 
   constructor(private httpService: UserRegistrationService) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
+      const minPasswordLength = 4;
       try {
-        if (control.value === this.registrationrForm.value.password) {
+        if (control.value.length > minPasswordLength) {
+          return null;
+        } else {
+          throw new Error();
+        };
+      } catch (_err) {
+        return { "valid": true };
+      }
+
+    }
+
+    this.matchPasswords = (control: FormControl): { [s: string]: boolean } => {
+      try {
+        if (control.value === this.registrationForm.value.password) {
           return null;
         } else {
           throw new Error();
         }
-      } catch (_) {
+      } catch (_err) {
         return { "match": true };
       }
     }
 
-    this.registrationrForm = new FormGroup({
+    this.registrationForm = new FormGroup({
       'login': new FormControl("", [Validators.required]),
-      'password': new FormControl("", [Validators.required]),
-      'verification': new FormControl("", [Validators.required, this.isValidPassword])
+      'password': new FormControl("", [Validators.required, this.isValidPassword]),
+      'verification': new FormControl("", [Validators.required, this.matchPasswords])
     });
+
+    console.log(this.registrationForm)
   }
 
   ngOnInit(): void {
@@ -40,14 +57,14 @@ export class UserRegestrarionFormComponent implements OnInit {
 
   submit() {
     const user = {
-      login: this.registrationrForm.value.login,
-      password: this.registrationrForm.value.password
+      login: this.registrationForm.value.login,
+      password: this.registrationForm.value.password
     };
 
     this.httpService.addUser(user).subscribe(
       (data: Users) => {
         this.registrationMessage = `${data.login}, registration completed successfully`;
-        this.registrationrForm.reset();
+        this.registrationForm.reset();
       },
       error => {
         this.registrationMessage = `Error: registration was not successful`;

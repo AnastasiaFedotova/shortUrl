@@ -29,8 +29,6 @@ export class ShortenerUrlComponent implements OnInit {
     this.shortenerForm = new FormGroup({
       'url': new FormControl("", [Validators.required, this.isValidHttpUrl])
     });
-
-    console.log(this.shortenerForm)
   }
 
   ngOnInit(): void {
