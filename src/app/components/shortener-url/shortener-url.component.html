@@ -1,0 +1,13 @@
+<form [formGroup]="shortenerForm" class="shortener-form" (submit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter link</mat-label>
+    <input matInput type="url" required placeholder="http://Google.com" name="url" formControlName="url">
+    <mat-error *ngIf="shortenerForm.controls.url.hasError('isUrl') && !shortenerForm.controls.url.untouched">
+      Invalid url
+    </mat-error>
+  </mat-form-field>
+  <button mat-stroked-button [disabled]="shortenerForm.invalid">
+    Generate
+  </button>
+  <a class="shortener-form__short-link" href="http://localhost:3000/{{shortLink}}" target="_blank">{{shortLink}}</a>
+</form>
