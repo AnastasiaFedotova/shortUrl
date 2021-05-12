@@ -9,10 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { UserRegestrarionFormComponent } from './components/user-regestrarion-form/user-regestrarion-form.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ShortenerUrlComponent
+    ShortenerUrlComponent,
+    UserRegestrarionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
