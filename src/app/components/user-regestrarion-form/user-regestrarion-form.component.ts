@@ -13,6 +13,7 @@ import { UserRegistrationService } from 'src/app/services/user-registration.serv
 export class UserRegestrarionFormComponent implements OnInit {
   registrationrForm: FormGroup;
   isValidPassword;
+  registrationMessage: string;
 
   constructor(private httpService: UserRegistrationService) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
@@ -45,9 +46,13 @@ export class UserRegestrarionFormComponent implements OnInit {
 
     this.httpService.addUser(user).subscribe(
       (data: Users) => {
-        console.log(data)
+        this.registrationMessage = `${data.login}, registration completed successfully`;
+        this.registrationrForm.reset();
       },
-      error => console.log(error)
+      error => {
+        this.registrationMessage = `Error: registration was not successful`;
+        console.log(error);
+      }
     );
   }
 }
