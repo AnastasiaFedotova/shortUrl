@@ -11,11 +11,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UserRegestrarionFormComponent } from './components/user-regestrarion-form/user-regestrarion-form.component';
+import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     ShortenerUrlComponent,
-    UserRegestrarionFormComponent
+    UserRegestrarionFormComponent,
+    LogInFormComponent
   ],
   imports: [
     BrowserModule,
