@@ -48,8 +48,6 @@ export class UserRegestrarionFormComponent implements OnInit {
       'password': new FormControl("", [Validators.required, this.isValidPassword]),
       'verification': new FormControl("", [Validators.required, this.matchPasswords])
     });
-
-    console.log(this.registrationForm)
   }
 
   ngOnInit(): void {
