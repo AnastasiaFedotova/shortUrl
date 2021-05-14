@@ -11,8 +11,8 @@ export class LogInServiceService {
   }
 
   logIn(user: Users) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json;charset=utf-8');
-
-    return this.http.post('http://localhost:3000/api/authorize', user, { headers: headers });
+    return this.http.post('http://localhost:3000/api/authorize', user, {
+      withCredentials: true
+    });
   }
 }
