@@ -12,12 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UserRegestrarionFormComponent } from './components/user-regestrarion-form/user-regestrarion-form.component';
 import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
+import { LinksListComponent } from './components/links-list/links-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     ShortenerUrlComponent,
     UserRegestrarionFormComponent,
-    LogInFormComponent
+    LogInFormComponent,
+    LinksListComponent
   ],
   imports: [
     BrowserModule,
