@@ -10,7 +10,6 @@ import { ShortLinks } from './../interface/shortLinks';
 export class UserSessionService {
   constructor(private http: HttpClient) { }
   checkSession() {
-    debugger
     const checkedSession = this.http.get('http://localhost:3000/api/authorize', {
       withCredentials: true
     });

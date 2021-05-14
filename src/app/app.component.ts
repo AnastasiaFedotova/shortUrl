@@ -12,16 +12,12 @@ export class AppComponent {
   title: string = 'shortUrl';
   isAuthorized: boolean = false;
 
-  constructor(private httpService: UserSessionService) { }
-
-  ngOnInit() {
-    this.isUser()
+  constructor(private httpService: UserSessionService) {
   }
 
-  isUser() {
+  ngOnInit() {
     this.httpService.checkSession().subscribe(
       (data) => {
-        debugger
         if (data) this.isAuthorized = true;
         else this.isAuthorized = false;
       },
