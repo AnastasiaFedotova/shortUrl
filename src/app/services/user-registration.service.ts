@@ -9,6 +9,8 @@ export class UserRegistrationService {
   constructor(private http: HttpClient) { }
 
   addUser(user: Users) {
-    return this.http.post('http://localhost:3000/api/v1/users', user);
+    return this.http.post('http://localhost:3000/api/v1/users', user, {
+      withCredentials: true
+    });
   }
 }

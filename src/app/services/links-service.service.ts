@@ -9,6 +9,8 @@ export class LinksServiceService {
   constructor(private http: HttpClient) { }
 
   generateLink(link: Links) {
-    return this.http.post('http://localhost:3000/api/v1/links', link);
+    return this.http.post('http://localhost:3000/api/v1/links', link, {
+      withCredentials: true
+    });
   }
 }
