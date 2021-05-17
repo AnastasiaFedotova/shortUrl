@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserSessionService } from './services/user-session.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AppComponent {
   title: string = 'shortUrl';
   isAuthorized: boolean = false;
 
-  constructor(private httpService: UserSessionService) {
+  constructor(private httpService: UserSessionService, private router: Router) {
   }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class AppComponent {
       (data) => {
         if (data) this.isAuthorized = true;
         else this.isAuthorized = false;
+
       },
       (err) => {
         console.log(err);
@@ -30,5 +32,6 @@ export class AppComponent {
   logOut() {
     this.httpService.removeSession();
     this.isAuthorized = false;
+    this.router.navigate(['']);
   }
 }
