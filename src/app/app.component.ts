@@ -5,8 +5,7 @@ import { UserSessionService } from './services/user-session.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [UserSessionService]
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
@@ -14,9 +13,6 @@ export class AppComponent {
   isAuthorized: boolean = false;
 
   constructor(private httpService: UserSessionService, private router: Router) {
-  }
-
-  ngOnInit() {
     this.httpService.checkSession().subscribe(
       (data) => {
         if (data) this.isAuthorized = true;
@@ -29,9 +25,12 @@ export class AppComponent {
     )
   }
 
+  ngOnInit() {
+  }
+
   logOut() {
     this.httpService.removeSession();
     this.isAuthorized = false;
-    this.router.navigate(['']);
+    this.router.navigate(['/']);
   }
 }

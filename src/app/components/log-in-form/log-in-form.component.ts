@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LogInServiceService } from './../../services/log-in-service.service';
 
@@ -12,7 +13,7 @@ export class LogInFormComponent implements OnInit {
   logInForm: FormGroup;
   logInMessage: string;
 
-  constructor(private httpService: LogInServiceService) {
+  constructor(private httpService: LogInServiceService, private router: Router) {
     this.logInForm = new FormGroup({
       "login": new FormControl("", [Validators.required]),
       "password": new FormControl("", [Validators.required])
@@ -30,8 +31,8 @@ export class LogInFormComponent implements OnInit {
 
     this.httpService.logIn(user).subscribe(
       (_data) => {
-        this.logInMessage = `You are logged in`;
         this.logInForm.reset();
+        this.router.navigate(['/']);
       },
       (error) => {
         this.logInMessage = `Error: Login failed`;

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ShortLinks } from './../interface/shortLinks';
 
 @Injectable({
@@ -8,11 +10,14 @@ import { ShortLinks } from './../interface/shortLinks';
 })
 
 export class UserSessionService {
-  constructor(private http: HttpClient) { }
+  public isAut: boolean = false;
+  constructor(private http: HttpClient, private router: Router) { }
   checkSession() {
     const checkedSession = this.http.get('http://localhost:3000/api/authorize', {
       withCredentials: true
-    });
+    }).pipe(tap((isAuthorized: boolean) => {
+      this.isAut = isAuthorized;
+    }));
 
     return checkedSession;
   }
@@ -29,6 +34,8 @@ export class UserSessionService {
     }).subscribe({
       next: (_data) => {
         console.log('Deleted');
+        this.isAut = false;
+        this.router.navigate(['']);
       },
       error: err => {
         console.log(err);
