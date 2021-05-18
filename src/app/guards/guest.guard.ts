@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
-import { UserSessionService } from "./services/user-session.service";
+import { UserSessionService } from "../services/user-session.service";
 
 @Injectable({ providedIn: "root" })
-export class guestRouters implements CanActivate {
+export class GuestGuard implements CanActivate {
   constructor(private userSession: UserSessionService) { }
-
 
   canActivate(
     route: ActivatedRouteSnapshot,
