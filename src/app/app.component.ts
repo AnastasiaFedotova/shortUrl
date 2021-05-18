@@ -10,7 +10,7 @@ import { UserSessionService } from './services/user-session.service';
 
 export class AppComponent {
   title: string = 'shortUrl';
-  isAuthorized: boolean = false;
+  isAuthorized: boolean = this.httpService.isAut;
 
   constructor(private httpService: UserSessionService, private router: Router) {
     this.httpService.checkSession().subscribe(
@@ -31,6 +31,7 @@ export class AppComponent {
   logOut() {
     this.httpService.removeSession();
     this.isAuthorized = false;
+    this.httpService.isAut = false;
     this.router.navigate(['/']);
   }
 }

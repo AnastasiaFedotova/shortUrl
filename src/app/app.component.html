@@ -1,3 +1,4 @@
+{{isAuthorized}}
 <div>
   <h1 class="title">{{title}}</h1>
   <div *ngIf="!isAuthorized">
@@ -5,14 +6,13 @@
       <a class="nav__link" routerLink="/registration" mat-button>Sign up</a>
       <a class="nav__link" routerLink="/logIn" mat-button>Log in</a>
     </nav>
-    <router-outlet></router-outlet>
   </div>
   <div *ngIf="isAuthorized">
     <nav class="nav">
       <a class="nav__link" routerLink="/linkList" mat-button>My links</a>
       <a class="nav__link" mat-button (click)="logOut()">Log out</a>
     </nav>
-    <router-outlet></router-outlet>
   </div>
+  <router-outlet></router-outlet>
   <app-shortener-url></app-shortener-url>
 </div>
