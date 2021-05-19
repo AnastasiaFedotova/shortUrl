@@ -15,12 +15,12 @@ export class AppComponent {
   isAuthorized: boolean;
   private subscription: Subscription;
 
-  constructor(private httpService: UserSessionService, private router: Router) {
-    this.httpService.checkSession();
+  constructor(private userSessionService: UserSessionService, private router: Router) {
+    this.userSessionService.checkSession();
   }
 
   ngOnInit() {
-    this.subscription = this.httpService.getIsAut().subscribe(value => {
+    this.subscription = this.userSessionService.getIsAut().subscribe(value => {
       this.isAuthorized = value;
     })
   }
@@ -30,10 +30,10 @@ export class AppComponent {
   }
 
   logOut() {
-    this.httpService.removeSession().subscribe((_data) => {
+    this.userSessionService.removeSession().subscribe((_data) => {
       this.router.navigate(['/']);
     });
 
-    this.httpService.emitIsAut(false)
+    this.userSessionService.emitIsAut(false)
   }
 }

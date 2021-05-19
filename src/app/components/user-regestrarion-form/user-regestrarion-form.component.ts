@@ -18,7 +18,7 @@ export class UserRegestrarionFormComponent implements OnInit {
   matchPasswords;
   isValidPassword;
 
-  constructor(private httpService: UserRegistrationService, private sessionService: UserSessionService, private router: Router) {
+  constructor(private userRegistrationService: UserRegistrationService, private userSessionService: UserSessionService, private router: Router) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
       const minPasswordLength = 4;
       try {
@@ -61,11 +61,11 @@ export class UserRegestrarionFormComponent implements OnInit {
       password: this.registrationForm.value.password
     };
 
-    this.httpService.addUser(user).subscribe(
+    this.userRegistrationService.addUser(user).subscribe(
       (_data) => {
         this.registrationForm.reset();
         this.router.navigate(['../']);
-        this.sessionService.emitIsAut(true);
+        this.userSessionService.emitIsAut(true);
       },
       error => {
         this.registrationMessage = `Error: registration was not successful`;

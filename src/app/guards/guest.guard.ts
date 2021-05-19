@@ -6,13 +6,13 @@ import { UserSessionService } from "../services/user-session.service";
 @Injectable({ providedIn: "root" })
 export class GuestGuard implements CanActivate {
   private isUser: boolean;
-  constructor(private userSession: UserSessionService) { }
+  constructor(private userSessionService: UserSessionService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.userSession.getIsAut().subscribe((value) => {
+    this.userSessionService.getIsAut().subscribe((value) => {
       this.isUser = value;
     });
 

@@ -14,7 +14,7 @@ export class ShortenerUrlComponent implements OnInit {
   shortLink: string;
   isValidHttpUrl;
 
-  constructor(private httpService: LinksServiceService) {
+  constructor(private linksServiceService: LinksServiceService) {
     this.isValidHttpUrl = function (control: FormControl): { [s: string]: boolean } {
       try {
         if (control.value) {
@@ -40,7 +40,7 @@ export class ShortenerUrlComponent implements OnInit {
       userId: null
     };
 
-    this.httpService.generateLink(link).subscribe(
+    this.linksServiceService.generateLink(link).subscribe(
       (data: ShortLinks) => {
         this.shortLink = data.short_url;
       },

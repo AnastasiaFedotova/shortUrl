@@ -14,7 +14,7 @@ export class LogInFormComponent implements OnInit {
   logInForm: FormGroup;
   logInMessage: string;
 
-  constructor(private userService: LogInServiceService, private sessionService: UserSessionService, private router: Router) {
+  constructor(private logInServiceService: LogInServiceService, private userSessionService: UserSessionService, private router: Router) {
     this.logInForm = new FormGroup({
       "login": new FormControl("", [Validators.required]),
       "password": new FormControl("", [Validators.required])
@@ -30,11 +30,11 @@ export class LogInFormComponent implements OnInit {
       password: this.logInForm.value.password
     };
 
-    this.userService.logIn(user).subscribe(
+    this.logInServiceService.logIn(user).subscribe(
       (_data) => {
         this.logInForm.reset();
         this.router.navigate(['../']);
-        this.sessionService.emitIsAut(true);
+        this.userSessionService.emitIsAut(true);
       },
       (error) => {
         this.logInMessage = `Error: Login failed`;

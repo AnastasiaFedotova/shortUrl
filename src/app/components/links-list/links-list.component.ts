@@ -10,8 +10,8 @@ import { UserSessionService } from 'src/app/services/user-session.service';
 })
 export class LinksListComponent implements OnInit {
   links: ShortLinks[]
-  constructor(private httpService: UserSessionService) {
-    this.httpService.readUserList().subscribe(
+  constructor(private userSessionService: UserSessionService) {
+    this.userSessionService.readUserList().subscribe(
       (data) => {
         this.links = data;
       },
