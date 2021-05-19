@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LogInServiceService } from './../../services/log-in-service.service';
@@ -21,7 +21,7 @@ export class LogInFormComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   submit() {
@@ -32,9 +32,9 @@ export class LogInFormComponent implements OnInit {
 
     this.userService.logIn(user).subscribe(
       (_data) => {
-        this.sessionService.isAut = true;
         this.logInForm.reset();
-        window.location.reload()
+        this.router.navigate(['../']);
+        this.sessionService.emitIsAut(true);
       },
       (error) => {
         this.logInMessage = `Error: Login failed`;

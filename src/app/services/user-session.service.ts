@@ -1,25 +1,32 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { ShortLinks } from './../interface/shortLinks';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserSessionService {
-  public isAut: boolean = false;
-  constructor(private http: HttpClient, private router: Router) { }
-  checkSession() {
-    const checkedSession = this.http.get('http://localhost:3000/api/authorize', {
-      withCredentials: true
-    }).pipe(tap((isAuthorized: boolean) => {
-      this.isAut = isAuthorized;
-    }));
+  isAuth: EventEmitter<boolean> = new EventEmitter();
 
-    return checkedSession;
+  constructor(private http: HttpClient) {
+  }
+
+  emitIsAut(isAut) {
+    this.isAuth.emit(isAut);
+  }
+
+  getIsAut() {
+    return this.isAuth;
+  }
+
+  checkSession(): void {
+    this.http.get<boolean>('http://localhost:3000/api/authorize', {
+      withCredentials: true
+    }).subscribe((value) => this.emitIsAut(value));
   }
 
   readUserList(): Observable<ShortLinks[]> {
@@ -29,17 +36,8 @@ export class UserSessionService {
   }
 
   removeSession() {
-    this.http.delete('http://localhost:3000/api/authorize', {
+    return this.http.delete('http://localhost:3000/api/authorize', {
       withCredentials: true
-    }).subscribe({
-      next: (_data) => {
-        console.log('Deleted');
-        this.isAut = false;
-        this.router.navigate(['']);
-      },
-      error: err => {
-        console.log(err);
-      }
-    });;
+    })
   }
 }

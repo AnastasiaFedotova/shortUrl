@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Users } from 'src/app/interface/users';
+import { UserSessionService } from 'src/app/services/user-session.service';
 import { UserRegistrationService } from 'src/app/services/user-registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-regestrarion-form',
@@ -16,7 +18,7 @@ export class UserRegestrarionFormComponent implements OnInit {
   matchPasswords;
   isValidPassword;
 
-  constructor(private httpService: UserRegistrationService) {
+  constructor(private httpService: UserRegistrationService, private sessionService: UserSessionService, private router: Router) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
       const minPasswordLength = 4;
       try {
@@ -60,9 +62,10 @@ export class UserRegestrarionFormComponent implements OnInit {
     };
 
     this.httpService.addUser(user).subscribe(
-      (data: Users) => {
-        this.registrationMessage = `${data.login}, registration completed successfully`;
+      (_data) => {
         this.registrationForm.reset();
+        this.router.navigate(['../']);
+        this.sessionService.emitIsAut(true);
       },
       error => {
         this.registrationMessage = `Error: registration was not successful`;
