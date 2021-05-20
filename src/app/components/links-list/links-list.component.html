@@ -1,8 +1,4 @@
-<ul class="user-links">
-  <li class="user-links__link" *ngFor="let link of links">
-    <a href="http://localhost:3000/{{link.short_url}}">
-      {{link.short_url}}
-    </a>
-    <span class="users-links__views">views: {{link.view_count || 0}}</span>
-  </li>
-</ul>
+<div *ngFor="let link of links">
+  <app-link-form [link]="link"></app-link-form>
+</div>
+

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Links } from 'src/app/interface/links';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { UserSessionService } from 'src/app/services/user-session.service';
 
@@ -9,7 +10,7 @@ import { UserSessionService } from 'src/app/services/user-session.service';
   providers: [UserSessionService]
 })
 export class LinksListComponent implements OnInit {
-  links: ShortLinks[]
+  links: ShortLinks[];
   constructor(private userSessionService: UserSessionService) {
     this.userSessionService.readUserList().subscribe(
       (data) => {

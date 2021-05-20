@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserRegestrarionFormComponent } from './components/user-regestrarion-form/user-regestrarion-form.component';
 import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 import { LinksListComponent } from './components/links-list/links-list.component';
+import { LinkFormComponent } from './components/link-form/link-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     ShortenerUrlComponent,
     UserRegestrarionFormComponent,
     LogInFormComponent,
-    LinksListComponent
+    LinksListComponent,
+    LinkFormComponent
   ],
   imports: [
     BrowserModule,
