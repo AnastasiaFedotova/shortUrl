@@ -1,22 +1,19 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ShortLinks } from './../interface/shortLinks';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserSessionService {
-  isAuth: EventEmitter<boolean> = new EventEmitter();
+  isAuth: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   emitIsAut(isAut) {
-    this.isAuth.emit(isAut);
+    this.isAuth.next(isAut);
   }
 
   getIsAut() {
