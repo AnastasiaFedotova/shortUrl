@@ -16,7 +16,7 @@ export class LinkFormComponent implements OnInit {
   errorMessage: string;
   constructor(private linksServiceService: LinksServiceService) {
     this.linkForm = new FormGroup({
-      "link": new FormControl("", [Validators.required])
+      "link": new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
     })
   }
 
