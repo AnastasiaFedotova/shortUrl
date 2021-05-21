@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,11 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { UserRegestrarionFormComponent } from './components/user-regestrarion-form/user-regestrarion-form.component';
 import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { LinkFormComponent } from './components/link-form/link-form.component';
+import { LinksEffect } from './store/effects/links.effects';
+import { AppReducer } from './store/redurcers/app.reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +26,7 @@ import { LinkFormComponent } from './components/link-form/link-form.component';
     UserRegestrarionFormComponent,
     LogInFormComponent,
     LinksListComponent,
-    LinkFormComponent
+    LinkFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +38,11 @@ import { LinkFormComponent } from './components/link-form/link-form.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(AppReducer),
+    EffectsModule.forRoot([LinksEffect])
   ],
-  providers: [],
+  providers: [Store],
   bootstrap: [AppComponent]
 })
 

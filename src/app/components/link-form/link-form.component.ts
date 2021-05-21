@@ -14,10 +14,11 @@ export class LinkFormComponent implements OnInit {
   linkForm: FormGroup;
   isChange: boolean = false;
   errorMessage: string;
+  linkUrl: string
   constructor(private linksServiceService: LinksServiceService) {
     this.linkForm = new FormGroup({
       "link": new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
-    })
+    });
   }
 
   startChangeLinks() {
@@ -30,16 +31,18 @@ export class LinkFormComponent implements OnInit {
       customUrl: this.linkForm.value.link
     }
 
-    this.linksServiceService.changeNameLink(newLink).subscribe((value) => {
+    this.linksServiceService.changeNameLink(newLink).subscribe((value: string) => {
       if (!value) {
         this.errorMessage = 'error';
         this.isChange = true;
       } else {
-        link.short_url = value;
+        this.linkUrl = value;
         this.isChange = false;
       }
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.linkUrl = this.link.short_url;
+  }
 }

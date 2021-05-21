@@ -1,6 +1,6 @@
 <div *ngIf="!isChange">
-  <a href="http://localhost:3000/{{link.short_url}}">
-    {{link.short_url}}
+  <a href="http://localhost:3000/{{linkUrl}}">
+    {{linkUrl}}
   </a>
   <span class="users-links__views">views: {{link.view_count || 0}}</span>
   <button type="button" mat-stroked-button (click)="startChangeLinks()">
@@ -10,8 +10,8 @@
 <div *ngIf="isChange">
   <form [formGroup]="linkForm" (submit)="changeLink(link)">
     <mat-form-field appearance="outline">
-      <mat-label>Enter new name</mat-label>
-      <input matInput required placeholder={{link.short_url}} name="link" formControlName="link">
+      <mat-label>Enter new url</mat-label>
+      <input matInput required placeholder={{linkUrl}} name="link" formControlName="link">
       <mat-error *ngIf="linkForm.controls.link.hasError('minLength') &&
         linkForm.controls.link.hasError('maxLength') && linkForm.controls.link.untouched">
         Invalid length
