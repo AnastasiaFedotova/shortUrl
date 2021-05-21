@@ -1,8 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LogInServiceService } from './../../services/log-in-service.service';
-import { UserSessionService } from 'src/app/services/user-session.service';
+import { AppState } from 'src/app/store/state/app.state';
+import { OpenSession } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-log-in-form',
@@ -14,7 +16,7 @@ export class LogInFormComponent implements OnInit {
   logInForm: FormGroup;
   logInMessage: string;
 
-  constructor(private logInServiceService: LogInServiceService, private userSessionService: UserSessionService, private router: Router) {
+  constructor(private logInServiceService: LogInServiceService, private store: Store<AppState>, private router: Router) {
     this.logInForm = new FormGroup({
       "login": new FormControl("", [Validators.required]),
       "password": new FormControl("", [Validators.required])
@@ -34,7 +36,7 @@ export class LogInFormComponent implements OnInit {
       (_data) => {
         this.logInForm.reset();
         this.router.navigate(['../']);
-        this.userSessionService.emitIsAut(true);
+        this.store.dispatch(new OpenSession());
       },
       (error) => {
         this.logInMessage = `Error: Login failed`;

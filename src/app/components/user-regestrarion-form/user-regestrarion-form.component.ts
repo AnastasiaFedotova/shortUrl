@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Users } from 'src/app/interface/users';
-import { UserSessionService } from 'src/app/services/user-session.service';
-import { UserRegistrationService } from 'src/app/services/user-registration.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { UserRegistrationService } from 'src/app/services/user-registration.service';
+import { OpenSession } from 'src/app/store/actions/auth.actions';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-user-regestrarion-form',
@@ -18,7 +19,7 @@ export class UserRegestrarionFormComponent implements OnInit {
   matchPasswords;
   isValidPassword;
 
-  constructor(private userRegistrationService: UserRegistrationService, private userSessionService: UserSessionService, private router: Router) {
+  constructor(private userRegistrationService: UserRegistrationService, private store: Store<AppState>, private router: Router) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
       const minPasswordLength = 4;
       try {
@@ -65,7 +66,7 @@ export class UserRegestrarionFormComponent implements OnInit {
       (_data) => {
         this.registrationForm.reset();
         this.router.navigate(['../']);
-        this.userSessionService.emitIsAut(true);
+        this.store.dispatch(new OpenSession());
       },
       error => {
         this.registrationMessage = `Error: registration was not successful`;

@@ -14,18 +14,10 @@ export class UserSessionService {
 
   constructor(private http: HttpClient) { }
 
-  emitIsAut(isAut) {
-    this.isAuth.next(isAut);
-  }
-
-  getIsAut() {
-    return this.isAuth;
-  }
-
-  checkSession(): void {
-    this.http.get<boolean>(this.urlApiAuth, {
+  checkSession(): Observable<boolean> {
+    return this.http.get<boolean>(this.urlApiAuth, {
       withCredentials: true
-    }).subscribe((value) => this.emitIsAut(value));
+    })
   }
 
   readUserList(): Observable<ShortLinks[]> {

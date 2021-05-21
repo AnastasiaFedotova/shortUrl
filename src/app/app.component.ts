@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { UserSessionService } from './services/user-session.service';
-
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { RemoveSession, CheckAuth } from './store/actions/auth.actions';
+import { selectedAuth } from './store/selectors/auth.selectors';
+import { AppState } from './store/state/app.state';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,27 +14,19 @@ import { UserSessionService } from './services/user-session.service';
 export class AppComponent {
   title: string = 'shortUrl';
   isAuthorized: boolean;
-  private subscription: Subscription;
 
-  constructor(private userSessionService: UserSessionService, private router: Router) {
-    this.userSessionService.checkSession();
+  constructor(private store: Store<AppState>, private router: Router) {
+    this.store.dispatch(new CheckAuth())
   }
 
   ngOnInit() {
-    this.subscription = this.userSessionService.getIsAut().subscribe(value => {
-      this.isAuthorized = value;
+    this.store.pipe(select(selectedAuth)).subscribe(val => {
+      this.isAuthorized = val;
     })
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   logOut() {
-    this.userSessionService.removeSession().subscribe((_data) => {
-      this.router.navigate(['/']);
-    });
-
-    this.userSessionService.emitIsAut(false)
+    this.store.dispatch(new RemoveSession());
+    this.router.navigate(['/']);
   }
 }

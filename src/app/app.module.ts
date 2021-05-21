@@ -18,6 +18,7 @@ import { LogInFormComponent } from './components/log-in-form/log-in-form.compone
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { LinkFormComponent } from './components/link-form/link-form.component';
 import { LinksEffect } from './store/effects/links.effects';
+import { AuthEffect } from './store/effects/auth.effects';
 import { AppReducer } from './store/redurcers/app.reducers';
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { AppReducer } from './store/redurcers/app.reducers';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot([LinksEffect])
+    EffectsModule.forRoot([LinksEffect, AuthEffect])
   ],
   providers: [Store],
   bootstrap: [AppComponent]
