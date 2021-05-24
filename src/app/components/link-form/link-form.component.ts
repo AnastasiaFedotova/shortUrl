@@ -49,6 +49,10 @@ export class LinkFormComponent implements OnInit {
     }
   }
 
+  cancel() {
+    this.isChange = false;
+  }
+
   ngOnInit(): void {
     this.linkUrl = this.link.short_url;
   }

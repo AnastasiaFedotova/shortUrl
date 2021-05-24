@@ -20,6 +20,9 @@
     <button mat-stroked-button  [disabled]="linkForm.invalid">
       ok
     </button>
+    <button mat-stroked-button (click)="cancel()" type="button">
+      cancel
+    </button>
   </form>
   {{errorMessage}}
 </div>
