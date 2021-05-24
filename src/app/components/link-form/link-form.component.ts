@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
 import { updateLinks } from 'src/app/interface/links';
 import { ShortLinks } from 'src/app/interface/shortLinks';
-import { LinksServiceService } from 'src/app/services/links-service.service';
+import { AppState } from 'src/app/store/state/app.state';
+import { ChangeNameLink } from 'src/app/store/actions/shortlinks.actions';
+import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors';
 
 @Component({
   selector: 'app-link-form',
@@ -15,9 +18,9 @@ export class LinkFormComponent implements OnInit {
   isChange: boolean = false;
   errorMessage: string;
   linkUrl: string
-  constructor(private linksServiceService: LinksServiceService) {
+  constructor(private store: Store<AppState>) {
     this.linkForm = new FormGroup({
-      "link": new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
+      'link': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
     });
   }
 
@@ -31,15 +34,19 @@ export class LinkFormComponent implements OnInit {
       customUrl: this.linkForm.value.link
     }
 
-    this.linksServiceService.changeNameLink(newLink).subscribe((value: string) => {
-      if (!value) {
-        this.errorMessage = 'error';
-        this.isChange = true;
-      } else {
-        this.linkUrl = value;
-        this.isChange = false;
-      }
-    });
+    try {
+      this.store.dispatch(new ChangeNameLink(newLink));
+      this.store.pipe(select(selectedShortLink)).subscribe(value => {
+        if (value) {
+          this.linkUrl = typeof value === 'string' ? value : '';
+          this.isChange = false;
+        }
+      });
+    } catch (error) {
+      this.errorMessage = 'error in change';
+      this.isChange = true;
+      console.log(error);
+    }
   }
 
   ngOnInit(): void {

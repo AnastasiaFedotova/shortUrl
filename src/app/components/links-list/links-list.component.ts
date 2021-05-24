@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { AppState } from './../../store/state/app.state';
 import { UserSessionService } from 'src/app/services/user-session.service';
