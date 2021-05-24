@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { AppState } from './../../store/state/app.state';
-import { GetLinks } from 'src/app/store/actions/links.actions';
-import { selectLinksList } from 'src/app/store/selectors/links.selectors';
+import { GetLinks } from 'src/app/store/actions/linksList.actions';
+import { selectLinksList } from 'src/app/store/selectors/linksList.selectors';
 
 @Component({
   selector: 'app-links-list',

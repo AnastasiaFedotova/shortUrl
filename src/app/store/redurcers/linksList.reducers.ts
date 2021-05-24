@@ -1,5 +1,5 @@
-import { ELinksActions, LinksActions } from './../actions/links.actions';
-import { LinksState, InitialLinksState } from './../state/links.state';
+import { ELinksActions, LinksActions } from '../actions/linksList.actions';
+import { LinksState, InitialLinksState } from '../state/linksList.state';
 
 export const linksReducer = (
   state = InitialLinksState,

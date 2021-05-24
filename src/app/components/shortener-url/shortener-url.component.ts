@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
-import { AddLink } from 'src/app/store/actions/shortlinks.actions';
-import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors';
+import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
+import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.selectors';
 
 @Component({
   selector: 'app-shortener-url',
@@ -43,8 +43,8 @@ export class ShortenerUrlComponent implements OnInit {
 
     try {
       this.store.dispatch(new AddLink(link));
-      this.store.pipe(select(selectedShortLink)).subscribe(value =>
-        this.shortLink = typeof value === 'string' ? "" : value?.short_url || ""
+      this.store.pipe(select(selectedAddedShortLink)).subscribe(value =>
+        this.shortLink = value?.short_url || ""
       );
     } catch (err) {
       console.log(err)

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { throwError } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { UserSessionService } from './../../services/user-session.service';
-import { ELinksActions, GetLinks } from './../actions/links.actions';
+import { UserSessionService } from '../../services/user-session.service';
+import { ELinksActions, GetLinks } from '../actions/linksList.actions';
 
 @Injectable({ providedIn: "root" })
 export class LinksEffect {

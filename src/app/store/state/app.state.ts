@@ -1,22 +1,25 @@
 import { RouterReducerState } from '@ngrx/router-store';
-import { LinksState, InitialLinksState } from './links.state';
+import { LinksState, InitialLinksState } from './linksList.state';
 import { AuthState, InitialAuthState } from './auth.state';
 import { InitialUsersState, UsersState } from './users.state';
-import { InitialShortLinksState, ShortLinksState } from './shortLinks.state';
+import { InitialAddedShortLinksState, AddedShortLinksState } from './addedShortLinks.state';
+import { InitialChangedShortLinksState, ChangedShortLinksState } from './changedShortLinks.state';
 
 export interface AppState {
   router?: RouterReducerState,
   links: LinksState,
   isAuth: AuthState,
   isUser: UsersState,
-  shortLink: ShortLinksState
+  addedShortLink: AddedShortLinksState,
+  changedShortLink: ChangedShortLinksState
 }
 
 export const InitialAppState: AppState = {
   links: InitialLinksState,
   isAuth: InitialAuthState,
   isUser: InitialUsersState,
-  shortLink: InitialShortLinksState
+  addedShortLink: InitialAddedShortLinksState,
+  changedShortLink: InitialChangedShortLinksState
 }
 
 export function getInitialState(): AppState {

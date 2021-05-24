@@ -4,8 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { updateLinks } from 'src/app/interface/links';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { AppState } from 'src/app/store/state/app.state';
-import { ChangeNameLink } from 'src/app/store/actions/shortlinks.actions';
-import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors';
+import { ChangedNameLink } from 'src/app/store/actions/changedShortlinks.actions';
+import { selectedChangedShortLink } from 'src/app/store/selectors/changedShortLinks.selectors';
 
 @Component({
   selector: 'app-link-form',
@@ -35,10 +35,10 @@ export class LinkFormComponent implements OnInit {
     }
 
     try {
-      this.store.dispatch(new ChangeNameLink(newLink));
-      this.store.pipe(select(selectedShortLink)).subscribe(value => {
+      this.store.dispatch(new ChangedNameLink(newLink));
+      this.store.pipe(select(selectedChangedShortLink)).subscribe(value => {
         if (value) {
-          this.linkUrl = typeof value === 'string' ? value : '';
+          this.linkUrl = value;
           this.isChange = false;
         }
       });

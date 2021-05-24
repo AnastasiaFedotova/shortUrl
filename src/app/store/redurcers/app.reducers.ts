@@ -1,15 +1,17 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { AppState } from './../state/app.state';
 import { routerReducer } from '@ngrx/router-store';
-import { linksReducer } from './links.reducers';
+import { linksReducer } from './linksList.reducers';
 import { authReducer } from './auth.reducers';
 import { usersReducer } from './users.reducers';
-import { shortLinksReducer } from './shortlinks.reducers';
+import { addedShortLinksReducer } from './addedShortlinks.reducers';
+import { changedShortLinksReducer } from './ChangedShortlinks.reducers';
 
 export const AppReducer: ActionReducerMap<AppState, any> = {
   router: routerReducer,
   links: linksReducer,
   isAuth: authReducer,
   isUser: usersReducer,
-  shortLink: shortLinksReducer
+  changedShortLink: changedShortLinksReducer,
+  addedShortLink: addedShortLinksReducer
 }

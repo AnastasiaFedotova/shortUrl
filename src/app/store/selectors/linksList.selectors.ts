@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { AppState } from './../state/app.state';
-import { LinksState } from './../state/links.state';
+import { AppState } from '../state/app.state';
+import { LinksState } from '../state/linksList.state';
 
 const selectLinks = (state: AppState) => state.links;
 
