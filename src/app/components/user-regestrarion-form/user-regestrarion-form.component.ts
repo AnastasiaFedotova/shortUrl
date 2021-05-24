@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserRegistrationService } from 'src/app/services/user-registration.service';
 import { OpenSession } from 'src/app/store/actions/auth.actions';
+import { AddUser } from 'src/app/store/actions/users.actions';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
@@ -19,7 +20,7 @@ export class UserRegestrarionFormComponent implements OnInit {
   matchPasswords;
   isValidPassword;
 
-  constructor(private userRegistrationService: UserRegistrationService, private store: Store<AppState>, private router: Router) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
       const minPasswordLength = 4;
       try {
@@ -62,16 +63,14 @@ export class UserRegestrarionFormComponent implements OnInit {
       password: this.registrationForm.value.password
     };
 
-    this.userRegistrationService.addUser(user).subscribe(
-      (_data) => {
-        this.registrationForm.reset();
-        this.router.navigate(['../']);
-        this.store.dispatch(new OpenSession());
-      },
-      error => {
-        this.registrationMessage = `Error: registration was not successful`;
-        console.log(error);
-      }
-    );
+    try {
+      this.store.dispatch(new AddUser(user));
+      this.registrationForm.reset();
+      this.router.navigate(['../']);
+      this.store.dispatch(new OpenSession(true));
+    } catch (error) {
+      this.registrationMessage = `Error: registration was not successful`;
+      console.log(error);
+    };
   }
 }

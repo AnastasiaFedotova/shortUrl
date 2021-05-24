@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ShortLinks } from 'src/app/interface/shortLinks';
+import { Store, select } from '@ngrx/store';
 import { LinksServiceService } from 'src/app/services/links-service.service';
+import { AppState } from 'src/app/store/state/app.state';
+import { AddLink } from 'src/app/store/actions/shortlinks.actions';
+import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors';
 
 @Component({
   selector: 'app-shortener-url',
@@ -14,7 +17,7 @@ export class ShortenerUrlComponent implements OnInit {
   shortLink: string;
   isValidHttpUrl;
 
-  constructor(private linksServiceService: LinksServiceService) {
+  constructor(private store: Store<AppState>) {
     this.isValidHttpUrl = function (control: FormControl): { [s: string]: boolean } {
       try {
         if (control.value) {
@@ -40,11 +43,13 @@ export class ShortenerUrlComponent implements OnInit {
       userId: null
     };
 
-    this.linksServiceService.generateLink(link).subscribe(
-      (data: ShortLinks) => {
-        this.shortLink = data.short_url;
-      },
-      error => console.log(error)
-    );
+    try {
+      this.store.dispatch(new AddLink(link));
+      this.store.pipe(select(selectedShortLink)).subscribe(value =>
+        this.shortLink = typeof value === 'string' ? "" : value?.short_url || ""
+      );
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

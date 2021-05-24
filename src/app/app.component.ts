@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { RemoveSession, CheckAuth } from './store/actions/auth.actions';
 import { selectedAuth } from './store/selectors/auth.selectors';
 import { AppState } from './store/state/app.state';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,7 +26,8 @@ export class AppComponent {
   }
 
   logOut() {
-    this.store.dispatch(new RemoveSession());
+    this.store.dispatch(new RemoveSession(false));
+    this.isAuthorized = false;
     this.router.navigate(['/']);
   }
 }

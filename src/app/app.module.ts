@@ -20,6 +20,9 @@ import { LinkFormComponent } from './components/link-form/link-form.component';
 import { LinksEffect } from './store/effects/links.effects';
 import { AuthEffect } from './store/effects/auth.effects';
 import { AppReducer } from './store/redurcers/app.reducers';
+import { UsersEffect } from './store/effects/users.effects';
+import { ShortLinksEffect } from './store/effects/shortLinks.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,7 @@ import { AppReducer } from './store/redurcers/app.reducers';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot([LinksEffect, AuthEffect])
+    EffectsModule.forRoot([LinksEffect, AuthEffect, UsersEffect, ShortLinksEffect])
   ],
   providers: [Store],
   bootstrap: [AppComponent]

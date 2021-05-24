@@ -14,12 +14,12 @@ export const authReducer = (
     case EAuthActions.RemoveSession:
       return {
         ...state,
-        isAuth: false
+        isAuth: action.payload
       };
     case EAuthActions.OpenSession:
       return {
         ...state,
-        isAuth: true
+        isAuth: action.payload
       };
     default:
       return state;

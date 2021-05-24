@@ -17,11 +17,13 @@ export class CheckAuthSuccess implements Action {
 }
 
 export class RemoveSession implements Action {
-  public readonly type = EAuthActions.RemoveSession
+  public readonly type = EAuthActions.RemoveSession;
+  constructor(public payload: boolean) { }
 }
 
 export class OpenSession implements Action {
-  public readonly type = EAuthActions.OpenSession
+  public readonly type = EAuthActions.OpenSession;
+  constructor(public payload: boolean) { }
 }
 
 export type AuthActions = CheckAuth | CheckAuthSuccess | RemoveSession | OpenSession;

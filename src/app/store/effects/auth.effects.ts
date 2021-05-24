@@ -23,7 +23,7 @@ export class AuthEffect {
     ofType<RemoveSession>(EAuthActions.RemoveSession),
     mergeMap(() => this.authService.removeSession()
       .pipe(
-        map(_data => ({ type: EAuthActions.CheckAuthSuccess, payload: false })),
+        map(_action => ({ type: EAuthActions.CheckAuthSuccess, payload: false })),
         catchError(() => EMPTY)
       ))
   )
@@ -31,7 +31,7 @@ export class AuthEffect {
 
   openSession$ = createEffect(() => this.actions$.pipe(
     ofType<OpenSession>(EAuthActions.OpenSession),
-    map(() => ({ type: EAuthActions.CheckAuthSuccess, payload: true })),
+    map((action) => ({ type: EAuthActions.CheckAuthSuccess, payload: action.payload })),
     catchError(() => EMPTY)
   ));
 }
