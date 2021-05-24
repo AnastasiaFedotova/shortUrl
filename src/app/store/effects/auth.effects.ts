@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { throwError } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { UserSessionService } from './../../services/user-session.service';
 import { EAuthActions, CheckAuth, RemoveSession, OpenSession } from './../actions/auth.actions';
@@ -14,8 +14,10 @@ export class AuthEffect {
     mergeMap(() => this.authService.checkSession()
       .pipe(
         map(isAuth => ({ type: EAuthActions.CheckAuthSuccess, payload: isAuth })),
-        catchError(() => EMPTY)
-      ))
+      )),
+    catchError(err => {
+      return throwError(err);
+    })
   )
   );
 
@@ -23,15 +25,19 @@ export class AuthEffect {
     ofType<RemoveSession>(EAuthActions.RemoveSession),
     mergeMap(() => this.authService.removeSession()
       .pipe(
-        map(_action => ({ type: EAuthActions.CheckAuthSuccess, payload: false })),
-        catchError(() => EMPTY)
-      ))
+        map(_action => ({ type: EAuthActions.CheckAuthSuccess, payload: false }))
+      )),
+    catchError(err => {
+      return throwError(err);
+    })
   )
   );
 
   openSession$ = createEffect(() => this.actions$.pipe(
     ofType<OpenSession>(EAuthActions.OpenSession),
     map((action) => ({ type: EAuthActions.CheckAuthSuccess, payload: action.payload })),
-    catchError(() => EMPTY)
+    catchError(err => {
+      return throwError(err);
+    })
   ));
 }

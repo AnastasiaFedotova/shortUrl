@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { LogInServiceService } from 'src/app/services/log-in-service.service';
 import { UserRegistrationService } from './../../services/user-registration.service';
 import { EUsersActions, AddUser, LogIn } from './../actions/users.actions';
@@ -23,7 +24,10 @@ export class UsersEffect {
     mergeMap((action) => this.logInService.logIn(action.user)
       .pipe(
         map(isSuccsess => ({ type: EUsersActions.LogInSuccess, payload: isSuccsess }))
-      ))
+      )),
+    catchError(err => {
+      return throwError(err);
+    })
   )
   );
 }

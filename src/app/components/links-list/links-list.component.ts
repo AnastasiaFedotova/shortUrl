@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { AppState } from './../../store/state/app.state';
-import { UserSessionService } from 'src/app/services/user-session.service';
 import { GetLinks } from 'src/app/store/actions/links.actions';
 import { selectLinksList } from 'src/app/store/selectors/links.selectors';
 
 @Component({
   selector: 'app-links-list',
   templateUrl: './links-list.component.html',
-  styleUrls: ['./links-list.component.css'],
-  providers: [UserSessionService]
+  styleUrls: ['./links-list.component.css']
 })
 export class LinksListComponent {
   links: ShortLinks[];

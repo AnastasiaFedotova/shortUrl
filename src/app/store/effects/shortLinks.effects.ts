@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { LinksServiceService } from 'src/app/services/links-service.service';
 import { EShortLinksActions, AddLink, ChangeNameLink } from './../actions/shortlinks.actions';
 
@@ -13,7 +14,10 @@ export class ShortLinksEffect {
     mergeMap((action) => this.linksService.generateLink(action.link)
       .pipe(
         map(shortLink => ({ type: EShortLinksActions.AddLinkrSuccess, payload: shortLink }))
-      ))
+      )),
+    catchError(err => {
+      return throwError(err);
+    })
   )
   );
 
@@ -22,7 +26,10 @@ export class ShortLinksEffect {
     mergeMap((action) => this.linksService.changeNameLink(action.link)
       .pipe(
         map(shortLink => ({ type: EShortLinksActions.ChangeNameLinkSuccses, payload: shortLink }))
-      ))
+      )),
+    catchError(err => {
+      return throwError(err);
+    })
   )
   );
 }

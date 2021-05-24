@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { LinksServiceService } from 'src/app/services/links-service.service';
 import { AppState } from 'src/app/store/state/app.state';
 import { AddLink } from 'src/app/store/actions/shortlinks.actions';
 import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors';
@@ -9,8 +8,7 @@ import { selectedShortLink } from 'src/app/store/selectors/shortLinks.selectors'
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
-  styleUrls: ['./shortener-url.component.css'],
-  providers: [LinksServiceService]
+  styleUrls: ['./shortener-url.component.css']
 })
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;
