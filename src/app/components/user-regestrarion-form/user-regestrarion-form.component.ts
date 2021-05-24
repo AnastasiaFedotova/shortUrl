@@ -17,11 +17,11 @@ import { AppState } from 'src/app/store/state/app.state';
 export class UserRegestrarionFormComponent implements OnInit {
   registrationForm: FormGroup;
   registrationMessage: string;
-  matchPasswords;
-  isValidPassword;
+  matchPasswords: (control: FormControl) => { [s: string]: boolean };
+  isValidPassword: (control: FormControl) => { [s: string]: boolean };
 
   constructor(private store: Store<AppState>, private router: Router) {
-    this.isValidPassword = (control: FormControl): { [s: string]: boolean } => {
+    this.isValidPassword = (control) => {
       const minPasswordLength = 4;
       try {
         if (control.value.length > minPasswordLength) {
@@ -35,7 +35,7 @@ export class UserRegestrarionFormComponent implements OnInit {
 
     }
 
-    this.matchPasswords = (control: FormControl): { [s: string]: boolean } => {
+    this.matchPasswords = (control) => {
       try {
         if (control.value === this.registrationForm.value.password) {
           return null;
