@@ -11,6 +11,7 @@ export class UserSessionService {
   isAuth: BehaviorSubject<boolean> = new BehaviorSubject(false);
   urlApiAuth: string = `${environment.apiUrl}/authorize`;
   urlApiUserList: string = `${environment.apiUrl}/v1/links/userList`;
+  urlApiLinksList: string = `${environment.apiUrl}/v1/links`;
 
   constructor(private http: HttpClient) { }
 
@@ -20,8 +21,14 @@ export class UserSessionService {
     })
   }
 
-  readUserList(): Observable<ShortLinks[]> {
+  readUserLinksList(): Observable<ShortLinks[]> {
     return this.http.get<ShortLinks[]>(this.urlApiUserList, {
+      withCredentials: true
+    });
+  }
+
+  readLinksList(): Observable<ShortLinks[]> {
+    return this.http.get<ShortLinks[]>(this.urlApiLinksList, {
       withCredentials: true
     });
   }

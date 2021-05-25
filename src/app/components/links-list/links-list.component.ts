@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 import { AppState } from './../../store/state/app.state';
-import { GetLinks } from 'src/app/store/actions/linksList.actions';
-import { selectLinksList } from 'src/app/store/selectors/linksList.selectors';
+import { GetUsersLinks } from 'src/app/store/actions/usersLinkList.actions';
+import { selectUsersLinksList } from 'src/app/store/selectors/usersLinkList.selectors';
 
 @Component({
   selector: 'app-links-list',
@@ -14,10 +14,10 @@ export class LinksListComponent {
   links: ShortLinks[];
 
   constructor(private store: Store<AppState>) {
-    this.store.dispatch(new GetLinks());
+    this.store.dispatch(new GetUsersLinks());
   }
 
   ngOnInit() {
-    this.store.pipe(select(selectLinksList)).subscribe(value => this.links = value);
+    this.store.pipe(select(selectUsersLinksList)).subscribe(value => this.links = value);
   }
 }

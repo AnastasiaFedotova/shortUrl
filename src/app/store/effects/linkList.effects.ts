@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { throwError } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { UserSessionService } from '../../services/user-session.service';
-import { ELinksActions, GetLinks } from '../actions/linksList.actions';
+import { ELinksActions, GetLinks } from '../actions/linkList.actions';
 
 @Injectable({ providedIn: "root" })
 export class LinksEffect {
@@ -11,7 +11,7 @@ export class LinksEffect {
 
   getLinks$ = createEffect(() => this.actions$.pipe(
     ofType<GetLinks>(ELinksActions.GetLinks),
-    mergeMap(() => this.userService.readUserList()
+    mergeMap(() => this.userService.readLinksList()
       .pipe(
         map(links => ({ type: ELinksActions.GetLinksSuccess, payload: links }))
       )),

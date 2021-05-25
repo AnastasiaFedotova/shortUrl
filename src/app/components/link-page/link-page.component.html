@@ -1,6 +1,11 @@
-<div>
-  <a href="{{serverUrl}}/{{link.short_url}}">
-  {{link.short_url}}
-  </a>
-  <span class="users-links__views">views: {{link.view_count || 0}}</span>
+<div *ngIf="link">
+  <h1>Url:
+    <a href="{{serverUrl}}/{{link.short_url}}">
+      {{link.short_url}}
+    </a>
+  </h1>
+  <p class="users-links__views">views: {{link.view_count || 0}}</p>
+</div>
+<div *ngIf="!link">
+  <h1>Links not found</h1>
 </div>

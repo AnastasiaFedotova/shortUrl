@@ -17,13 +17,14 @@ import { UserRegestrarionFormComponent } from './components/user-regestrarion-fo
 import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { LinkFormComponent } from './components/link-form/link-form.component';
-import { LinksEffect } from './store/effects/linksList.effects';
+import { UsersLinksEffect } from './store/effects/usersLinkList.effects';
 import { AuthEffect } from './store/effects/auth.effects';
 import { AppReducer } from './store/redurcers/app.reducers';
 import { UsersEffect } from './store/effects/users.effects';
 import { AddedShortLinksEffect } from './store/effects/addedShortLinks.effects';
 import { ChangedShortLinksEffect } from './store/effects/changedShortLinks.effects';
 import { LinkPageComponent } from './components/link-page/link-page.component';
+import { LinksEffect } from './store/effects/linkList.effects';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { LinkPageComponent } from './components/link-page/link-page.component';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot([LinksEffect, AuthEffect, UsersEffect, AddedShortLinksEffect, ChangedShortLinksEffect])
+    EffectsModule.forRoot([LinksEffect, UsersLinksEffect, AuthEffect, UsersEffect, AddedShortLinksEffect, ChangedShortLinksEffect])
   ],
   providers: [Store],
   bootstrap: [AppComponent]

@@ -2,8 +2,8 @@ import { Action } from '@ngrx/store';
 import { ShortLinks } from 'src/app/interface/shortLinks';
 
 export enum ELinksActions {
-  GetLinks = '[User] Get Links',
-  GetLinksSuccess = '[User] Get Success Links'
+  GetLinks = '[Links] Get Links',
+  GetLinksSuccess = '[Links] Get Success Links'
 }
 
 export class GetLinks implements Action {

@@ -4,8 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { ShortLinks } from 'src/app/interface/shortLinks';
-import { GetLinks } from 'src/app/store/actions/linksList.actions';
-import { selectLinksList } from 'src/app/store/selectors/linksList.selectors';
+import { GetLinks } from 'src/app/store/actions/linkList.actions';
+import { selectLinksList } from 'src/app/store/selectors/linkList.selectors';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
