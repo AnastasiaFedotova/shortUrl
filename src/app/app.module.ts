@@ -22,7 +22,8 @@ import { AuthEffect } from './store/effects/auth.effects';
 import { AppReducer } from './store/redurcers/app.reducers';
 import { UsersEffect } from './store/effects/users.effects';
 import { AddedShortLinksEffect } from './store/effects/addedShortLinks.effects';
-import { ChangedShortLinksEffect } from './store/effects/changedShortLinks.effects copy';
+import { ChangedShortLinksEffect } from './store/effects/changedShortLinks.effects';
+import { LinkPageComponent } from './components/link-page/link-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChangedShortLinksEffect } from './store/effects/changedShortLinks.effec
     LogInFormComponent,
     LinksListComponent,
     LinkFormComponent,
+    LinkPageComponent,
   ],
   imports: [
     BrowserModule,

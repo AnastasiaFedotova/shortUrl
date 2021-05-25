@@ -5,11 +5,13 @@ import { LogInFormComponent } from './components/log-in-form/log-in-form.compone
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { UsersGuard } from './guards/users.guard';
 import { GuestGuard } from './guards/guest.guard';
+import { LinkPageComponent } from './components/link-page/link-page.component';
 
 const routes: Routes = [
   { path: 'registration', component: UserRegestrarionFormComponent, canActivate: [GuestGuard] },
   { path: 'logIn', component: LogInFormComponent, canActivate: [GuestGuard] },
-  { path: 'linkList', component: LinksListComponent, canActivate: [UsersGuard] }
+  { path: 'linkList', component: LinksListComponent, canActivate: [UsersGuard] },
+  { path: 'linkList/link/:id', component: LinkPageComponent }
 ]
 @NgModule({
   imports: [
