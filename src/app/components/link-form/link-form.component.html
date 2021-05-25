@@ -1,5 +1,5 @@
 <div *ngIf="!isChange">
-  <a href="http://localhost:3000/{{linkUrl}}">
+  <a href="{{serverUrl}}/{{linkUrl}}">
     {{linkUrl}}
   </a>
   <span class="users-links__views">views: {{link.view_count || 0}}</span>
