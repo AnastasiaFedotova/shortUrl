@@ -9,7 +9,7 @@ export const usersLinksReducer = (
     case EUsersLinksActions.GetUsersLinksSuccess:
       return {
         ...state,
-        links: action.payload
+        usersLinks: action.payload
       };
     default:
       return state;

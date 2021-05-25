@@ -1,7 +1,4 @@
 <div *ngFor="let link of links">
   <app-link-form [link]="link"></app-link-form>
-  <a [routerLink]="['link', link.id]">
-    {{link.short_url}}
-  </a>
 </div>
 

@@ -18,6 +18,8 @@ export class LinksListComponent {
   }
 
   ngOnInit() {
-    this.store.pipe(select(selectUsersLinksList)).subscribe(value => this.links = value);
+    this.store.pipe(select(selectUsersLinksList)).subscribe(value => {
+      this.links = value
+    });
   }
 }

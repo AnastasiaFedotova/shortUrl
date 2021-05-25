@@ -1,9 +1,9 @@
 import { ShortLinks } from '../../interface/shortLinks';
 
 export interface UsersLinksState {
-  links: ShortLinks[],
+  usersLinks: ShortLinks[],
 }
 
 export const InitialUsersLinksState: UsersLinksState = {
-  links: [],
+  usersLinks: [],
 }
