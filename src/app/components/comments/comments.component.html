@@ -1,6 +1,25 @@
-<ul>
-  <li *ngFor="let data of commentsData">
-    <a>{{data[1].login}}</a>
-    <span>{{data[0].message}}</span>
-  </li>
-</ul>
+<div>
+  <ul>
+    <li *ngFor="let data of commentsData">
+      <p>{{data[1].login}}</p>
+      <span>{{data[0].message}}</span>
+    </li>
+  </ul>
+
+  <form [formGroup]="commentForm" (submit)="addComment()">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter comment</mat-label>
+      <textarea matInput placeholder="Add comment" required name="link" formControlName="comment"></textarea>
+      <mat-error *ngIf="commentForm.controls.comment.hasError('minLength') &&
+      commentForm.controls.comment.hasError('maxLength') && commentForm.controls.comment.untouched">
+        Add comment
+      </mat-error>
+    </mat-form-field>
+    <button mat-stroked-button  [disabled]="commentForm.invalid">
+      ok
+    </button>
+    <button mat-stroked-button (click)="cancel()" type="button">
+      cancel
+    </button>
+  </form>
+</div>

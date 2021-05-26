@@ -14,8 +14,8 @@ export class CommentsService {
     return this.http.get(`${this.urlApi}/${linksId}`);
   }
 
-  addComment(commetnt: Comments) {
-    return this.http.post(this.urlApi, commetnt, {
+  addComment(comment: Comments) {
+    return this.http.post(this.urlApi, comment, {
       withCredentials: true
     });
   }
