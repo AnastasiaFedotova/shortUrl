@@ -3,5 +3,5 @@ export interface AuthState {
 }
 
 export const InitialAuthState: AuthState = {
-  isAuth: false
+  isAuth: null
 }

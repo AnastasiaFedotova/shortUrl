@@ -5,10 +5,10 @@
       <span>{{data[0].message}}</span>
     </li>
   </ul>
-
-  <form [formGroup]="commentForm" (submit)="addComment()">
+  <form *ngIf="isAuthorized" [formGroup]="commentForm" (submit)="addComment()">
+    <h2>{{authUser?.login}}</h2>
     <mat-form-field appearance="outline">
-      <mat-label>Enter comment</mat-label>
+      <mat-label>{{authUser?.login}}, Enter comment</mat-label>
       <textarea matInput placeholder="Add comment" required name="link" formControlName="comment"></textarea>
       <mat-error *ngIf="commentForm.controls.comment.hasError('minLength') &&
       commentForm.controls.comment.hasError('maxLength') && commentForm.controls.comment.untouched">

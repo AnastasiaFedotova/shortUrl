@@ -8,6 +8,8 @@ import { GetUser } from 'src/app/store/actions/gettedUser.actions';
 import { selectCommentsList } from 'src/app/store/selectors/commentsList.selectors';
 import { selectGettedUser } from 'src/app/store/selectors/gettedUser.selectors';
 import { AppState } from 'src/app/store/state/app.state';
+import { selectedAuth } from 'src/app/store/selectors/auth.selectors';
+import { selectedAuthUserId } from 'src/app/store/selectors/authUsers.selectors';
 
 @Component({
   selector: 'app-comments',
@@ -19,6 +21,10 @@ export class CommentsComponent implements OnInit {
   commentForm: FormGroup;
   comments: Comments[];
   commentsData: Array<[Comments, Users]> = [];
+  isAuthorized: boolean;
+  userId: boolean;
+  authUser: Users;
+
   constructor(private store: Store<AppState>) {
     this.commentForm = new FormGroup({
       'comment': new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(100)])
@@ -31,7 +37,21 @@ export class CommentsComponent implements OnInit {
       this.comments = value;
 
       if (this.comments.length) this.getUsers();
-    });
+    })
+
+    this.store.pipe(select(selectedAuth)).subscribe(val => {
+      this.isAuthorized = val ? true : false;
+      this.userId = val;
+    })
+
+    this.store.pipe(select(selectedAuthUserId)).subscribe(id => {
+      if (id) {
+        this.store.dispatch(new GetUser(id));
+        this.store.pipe(select(selectGettedUser)).subscribe(user => {
+          if (user) this.authUser = user;
+        });
+      }
+    })
   }
 
   cancel() {

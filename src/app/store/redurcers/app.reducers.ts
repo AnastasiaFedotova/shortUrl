@@ -10,6 +10,7 @@ import { changedShortLinksReducer } from './ChangedShortlinks.reducers';
 import { commentsReducer } from './commentsList.reducers';
 import { gettedUsersReducer } from './gettedUser.reducers';
 import { addedCommentReducer } from './addedComment.reducers';
+import { authUserIdReducer } from './authUsers.reducers';
 
 export const AppReducer: ActionReducerMap<AppState, any> = {
   router: routerReducer,
@@ -21,5 +22,6 @@ export const AppReducer: ActionReducerMap<AppState, any> = {
   addedShortLink: addedShortLinksReducer,
   comments: commentsReducer,
   user: gettedUsersReducer,
-  commentId: addedCommentReducer
+  commentId: addedCommentReducer,
+  authUserId: authUserIdReducer
 }

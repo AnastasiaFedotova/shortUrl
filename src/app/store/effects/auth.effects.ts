@@ -13,7 +13,7 @@ export class AuthEffect {
     ofType<CheckAuth>(EAuthActions.CheckAuth),
     mergeMap(() => this.authService.checkSession()
       .pipe(
-        map(isAuth => ({ type: EAuthActions.CheckAuthSuccess, payload: isAuth })),
+        map(isAuth => ({ type: EAuthActions.CheckAuthSuccess, payload: isAuth ? true : false })),
       )),
     catchError(err => {
       return throwError(err);

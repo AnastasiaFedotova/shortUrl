@@ -29,6 +29,7 @@ import { LinksEffect } from './store/effects/linkList.effects';
 import { CommentsEffect } from './store/effects/commentsList.effects';
 import { GettedUserEffect } from './store/effects/gettedUser.effects';
 import { AddedCommentsEffect } from './store/effects/addedComment.effects';
+import { AuthUserIdEffect } from './store/effects/authUsers.effects';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { AddedCommentsEffect } from './store/effects/addedComment.effects';
     StoreModule.forRoot(AppReducer),
     EffectsModule.forRoot([LinksEffect, UsersLinksEffect, AuthEffect,
       UsersEffect, AddedShortLinksEffect, ChangedShortLinksEffect, CommentsEffect,
-      GettedUserEffect, AddedCommentsEffect])
+      GettedUserEffect, AddedCommentsEffect, AuthUserIdEffect])
   ],
   providers: [Store],
   bootstrap: [AppComponent]

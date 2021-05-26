@@ -8,6 +8,7 @@ import { InitialChangedShortLinksState, ChangedShortLinksState } from './changed
 import { InitialCommentsState, CommentsState } from './commentsList.state';
 import { InitialGettedUserState, GettedUserState } from './gettedUser.state';
 import { InitialAddedCommentState, AddedCommentState } from './addedComment.state';
+import { InitialAuthUserIdState, AuthUserIdState } from './authUsers.state';
 
 
 export interface AppState {
@@ -20,7 +21,8 @@ export interface AppState {
   changedShortLink: ChangedShortLinksState,
   comments: CommentsState,
   user: GettedUserState,
-  commentId: AddedCommentState
+  commentId: AddedCommentState,
+  authUserId: AuthUserIdState
 }
 
 export const InitialAppState: AppState = {
@@ -32,7 +34,8 @@ export const InitialAppState: AppState = {
   changedShortLink: InitialChangedShortLinksState,
   comments: InitialCommentsState,
   user: InitialGettedUserState,
-  commentId: InitialAddedCommentState
+  commentId: InitialAddedCommentState,
+  authUserId: InitialAuthUserIdState
 }
 
 export function getInitialState(): AppState {
