@@ -1,6 +1,6 @@
 <ul>
-  <li *ngFor="let comment of comments">
-    <a>{{comment.user_id}}</a>
-    <span>{{comment.message}}</span>
+  <li *ngFor="let data of commentsData">
+    <a>{{data[1].login}}</a>
+    <span>{{data[0].message}}</span>
   </li>
 </ul>

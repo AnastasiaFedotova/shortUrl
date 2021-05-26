@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Comments } from 'src/app/interface/comments';
+import { Users } from 'src/app/interface/users';
 import { UserRegistrationService } from 'src/app/services/user-registration.service';
 import { GetComments } from 'src/app/store/actions/commentsList.actions';
 import { GetUser } from 'src/app/store/actions/gettedUser.actions';
@@ -16,7 +17,7 @@ import { AppState } from 'src/app/store/state/app.state';
 export class CommentsComponent implements OnInit {
   @Input() linkId: string;
   comments: Comments[];
-  data;
+  commentsData: Array<[Comments, Users]> = [];
   constructor(private store: Store<AppState>, private userRegistrationService: UserRegistrationService) { }
 
   ngOnInit() {
@@ -24,14 +25,17 @@ export class CommentsComponent implements OnInit {
     this.store.pipe(select(selectCommentsList)).subscribe(value => {
       this.comments = value;
 
-      if (this.comments.length) this.userRegistrationService.findUserById(this.comments[0].id)
+      if (this.comments.length) {
+        this.getUsers();
+      }
     });
+  }
 
-    this.data = this.comments.map(comment => {
-      debugger
+  getUsers() {
+    this.comments.forEach(comment => {
       this.store.dispatch(new GetUser(comment.user_id));
       this.store.pipe(select(selectGettedUser)).subscribe(value => {
-        return [comment, value]
+        if (value) this.commentsData.push([comment, value]);
       });
     })
   }
