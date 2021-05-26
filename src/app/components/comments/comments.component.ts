@@ -10,6 +10,7 @@ import { selectGettedUser } from 'src/app/store/selectors/gettedUser.selectors';
 import { AppState } from 'src/app/store/state/app.state';
 import { selectedAuth } from 'src/app/store/selectors/auth.selectors';
 import { selectedAuthUserId } from 'src/app/store/selectors/authUsers.selectors';
+import { AddComment } from 'src/app/store/actions/addedComment.actions';
 
 @Component({
   selector: 'app-comments',
@@ -22,7 +23,6 @@ export class CommentsComponent implements OnInit {
   comments: Comments[];
   commentsData: Array<[Comments, Users]> = [];
   isAuthorized: boolean;
-  userId: boolean;
   authUser: Users;
 
   constructor(private store: Store<AppState>) {
@@ -39,9 +39,8 @@ export class CommentsComponent implements OnInit {
       if (this.comments.length) this.getUsers();
     })
 
-    this.store.pipe(select(selectedAuth)).subscribe(val => {
-      this.isAuthorized = val ? true : false;
-      this.userId = val;
+    this.store.pipe(select(selectedAuth)).subscribe(isAuth => {
+      this.isAuthorized = isAuth;
     })
 
     this.store.pipe(select(selectedAuthUserId)).subscribe(id => {
@@ -59,12 +58,20 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment() {
+    debugger
+    debugger
+    this.store.dispatch(new AddComment({
+      message: this.commentForm.controls.comment.value,
+      user_id: this.authUser.id,
+      link_id: this.linkId
+    }));
     this.commentForm.reset();
   }
 
   getUsers() {
     this.comments.forEach((comment) => {
       this.store.dispatch(new GetUser(comment.user_id));
+
       this.store.pipe(select(selectGettedUser)).subscribe(value => {
         if (value) this.commentsData.push([comment, value]);
       });
