@@ -14,4 +14,8 @@ export class UserRegistrationService {
       withCredentials: true
     });
   }
+
+  findUserById(usersId: string) {
+    return this.http.get(`${this.urlApiUsers}/${usersId}`);
+  }
 }

@@ -18,6 +18,7 @@ import { LogInFormComponent } from './components/log-in-form/log-in-form.compone
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { LinkFormComponent } from './components/link-form/link-form.component';
 import { LinkPageComponent } from './components/link-page/link-page.component';
+import { CommentsComponent } from './components/comments/comments.component';
 import { UsersLinksEffect } from './store/effects/usersLinkList.effects';
 import { AuthEffect } from './store/effects/auth.effects';
 import { AppReducer } from './store/redurcers/app.reducers';
@@ -25,6 +26,8 @@ import { UsersEffect } from './store/effects/users.effects';
 import { AddedShortLinksEffect } from './store/effects/addedShortLinks.effects';
 import { ChangedShortLinksEffect } from './store/effects/changedShortLinks.effects';
 import { LinksEffect } from './store/effects/linkList.effects';
+import { CommentsEffect } from './store/effects/commentsList.effects';
+import { GettedUserEffect } from './store/effects/gettedUser.effects';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { LinksEffect } from './store/effects/linkList.effects';
     LinksListComponent,
     LinkFormComponent,
     LinkPageComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { LinksEffect } from './store/effects/linkList.effects';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot([LinksEffect, UsersLinksEffect, AuthEffect, UsersEffect, AddedShortLinksEffect, ChangedShortLinksEffect])
+    EffectsModule.forRoot([LinksEffect, UsersLinksEffect, AuthEffect,
+      UsersEffect, AddedShortLinksEffect, ChangedShortLinksEffect, CommentsEffect,
+      GettedUserEffect])
   ],
   providers: [Store],
   bootstrap: [AppComponent]

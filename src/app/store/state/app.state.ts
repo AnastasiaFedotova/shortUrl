@@ -5,6 +5,8 @@ import { AuthState, InitialAuthState } from './auth.state';
 import { InitialUsersState, UsersState } from './users.state';
 import { InitialAddedShortLinksState, AddedShortLinksState } from './addedShortLinks.state';
 import { InitialChangedShortLinksState, ChangedShortLinksState } from './changedShortLinks.state';
+import { InitialCommentsState, CommentsState } from './commentsList.state';
+import { InitialGettedUserState, GettedUserState } from './gettedUser.state';
 
 export interface AppState {
   router?: RouterReducerState,
@@ -13,7 +15,9 @@ export interface AppState {
   isAuth: AuthState,
   isUser: UsersState,
   addedShortLink: AddedShortLinksState,
-  changedShortLink: ChangedShortLinksState
+  changedShortLink: ChangedShortLinksState,
+  comments: CommentsState,
+  user: GettedUserState
 }
 
 export const InitialAppState: AppState = {
@@ -22,7 +26,9 @@ export const InitialAppState: AppState = {
   isAuth: InitialAuthState,
   isUser: InitialUsersState,
   addedShortLink: InitialAddedShortLinksState,
-  changedShortLink: InitialChangedShortLinksState
+  changedShortLink: InitialChangedShortLinksState,
+  comments: InitialCommentsState,
+  user: InitialGettedUserState
 }
 
 export function getInitialState(): AppState {

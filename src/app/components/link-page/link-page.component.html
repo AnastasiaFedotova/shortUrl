@@ -5,6 +5,7 @@
     </a>
   </h1>
   <p class="users-links__views">views: {{link.view_count || 0}}</p>
+  <app-comments [linkId]="link.id"></app-comments>
 </div>
 <div *ngIf="!link">
   <h1>Links not found</h1>

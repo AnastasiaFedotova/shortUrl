@@ -7,6 +7,8 @@ import { authReducer } from './auth.reducers';
 import { usersReducer } from './users.reducers';
 import { addedShortLinksReducer } from './addedShortlinks.reducers';
 import { changedShortLinksReducer } from './ChangedShortlinks.reducers';
+import { commentsReducer } from './commentsList.reducers';
+import { gettedUsersReducer } from './gettedUser.reducers';
 
 export const AppReducer: ActionReducerMap<AppState, any> = {
   router: routerReducer,
@@ -15,5 +17,7 @@ export const AppReducer: ActionReducerMap<AppState, any> = {
   isAuth: authReducer,
   isUser: usersReducer,
   changedShortLink: changedShortLinksReducer,
-  addedShortLink: addedShortLinksReducer
+  addedShortLink: addedShortLinksReducer,
+  comments: commentsReducer,
+  user: gettedUsersReducer
 }
