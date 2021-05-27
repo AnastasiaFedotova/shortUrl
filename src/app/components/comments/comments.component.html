@@ -1,11 +1,11 @@
 <div>
   <ul>
     <li *ngFor="let comment of comments">
-      <span>{{comment['User.login']}}</span>
+      <span>{{comment.User.login}}</span>
       <span>{{comment.message}}</span>
     </li>
   </ul>
-  <form *ngIf="isAuthorized" [formGroup]="commentForm" (submit)="addComment()">
+  <form *ngIf="authUser" [formGroup]="commentForm" (submit)="addComment()">
     <h2>{{authUser?.login}}</h2>
     <mat-form-field appearance="outline">
       <mat-label>{{authUser?.login}}, Enter comment</mat-label>

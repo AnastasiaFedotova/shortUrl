@@ -8,7 +8,6 @@ import { GetUser } from 'src/app/store/actions/gettedUser.actions';
 import { selectCommentsList } from 'src/app/store/selectors/commentsList.selectors';
 import { selectGettedUser } from 'src/app/store/selectors/gettedUser.selectors';
 import { AppState } from 'src/app/store/state/app.state';
-import { selectedAuth } from 'src/app/store/selectors/auth.selectors';
 import { selectedAuthUserId } from 'src/app/store/selectors/authUsers.selectors';
 import { AddComment } from 'src/app/store/actions/addedComment.actions';
 
@@ -21,7 +20,6 @@ export class CommentsComponent implements OnInit {
   @Input() linkId: string;
   commentForm: FormGroup;
   comments: Comments[];
-  isAuthorized: boolean;
   authUser: Users;
 
   constructor(private store: Store<AppState>) {
@@ -36,14 +34,11 @@ export class CommentsComponent implements OnInit {
       this.comments = value;
     })
 
-    this.store.pipe(select(selectedAuth)).subscribe(isAuth => {
-      this.isAuthorized = isAuth;
-    })
-
     this.store.pipe(select(selectedAuthUserId)).subscribe(id => {
       if (id) {
         this.store.dispatch(new GetUser(id));
         this.store.pipe(select(selectGettedUser)).subscribe(user => {
+          debugger
           if (user) this.authUser = user;
         });
       }
