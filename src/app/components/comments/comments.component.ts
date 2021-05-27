@@ -21,7 +21,6 @@ export class CommentsComponent implements OnInit {
   @Input() linkId: string;
   commentForm: FormGroup;
   comments: Comments[];
-  commentsData: Array<[Comments, Users]> = [];
   isAuthorized: boolean;
   authUser: Users;
 
@@ -35,8 +34,6 @@ export class CommentsComponent implements OnInit {
     this.store.dispatch(new GetComments(this.linkId));
     this.store.pipe(select(selectCommentsList)).subscribe(value => {
       this.comments = value;
-
-      if (this.comments.length) this.getUsers();
     })
 
     this.store.pipe(select(selectedAuth)).subscribe(isAuth => {
@@ -58,23 +55,11 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment() {
-    debugger
-    debugger
     this.store.dispatch(new AddComment({
       message: this.commentForm.controls.comment.value,
       user_id: this.authUser.id,
       link_id: this.linkId
     }));
     this.commentForm.reset();
-  }
-
-  getUsers() {
-    this.comments.forEach((comment) => {
-      this.store.dispatch(new GetUser(comment.user_id));
-
-      this.store.pipe(select(selectGettedUser)).subscribe(value => {
-        if (value) this.commentsData.push([comment, value]);
-      });
-    })
   }
 }

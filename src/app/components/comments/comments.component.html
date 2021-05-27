@@ -1,8 +1,8 @@
 <div>
   <ul>
-    <li *ngFor="let data of commentsData">
-      <span>{{data[1].login}}</span>
-      <span>{{data[0].message}}</span>
+    <li *ngFor="let comment of comments">
+      <span>{{comment['User.login']}}</span>
+      <span>{{comment.message}}</span>
     </li>
   </ul>
   <form *ngIf="isAuthorized" [formGroup]="commentForm" (submit)="addComment()">
