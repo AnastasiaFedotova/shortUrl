@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li *ngFor="let comment of comments">
-      <span>{{comment['User.login']}}</span>
+      <span>{{comment.User.login}}</span>
       <span>{{comment.message}}</span>
     </li>
   </ul>
