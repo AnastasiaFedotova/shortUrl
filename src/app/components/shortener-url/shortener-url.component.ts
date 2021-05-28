@@ -28,7 +28,8 @@ export class ShortenerUrlComponent implements OnInit {
     }
 
     this.shortenerForm = new FormGroup({
-      'url': new FormControl("", [Validators.required, this.isValidHttpUrl])
+      'url': new FormControl("", [Validators.required, this.isValidHttpUrl]),
+      'tags': new FormControl()
     });
   }
 
@@ -38,7 +39,8 @@ export class ShortenerUrlComponent implements OnInit {
   submit() {
     const link = {
       url: this.shortenerForm.value.url,
-      userId: null
+      userId: null,
+      tags: this.shortenerForm.value.tags.split(",")
     };
 
     try {

@@ -38,7 +38,6 @@ export class CommentsComponent implements OnInit {
       if (id) {
         this.store.dispatch(new GetUser(id));
         this.store.pipe(select(selectGettedUser)).subscribe(user => {
-          debugger
           if (user) this.authUser = user;
         });
       }

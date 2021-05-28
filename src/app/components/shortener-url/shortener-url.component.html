@@ -6,6 +6,10 @@
       Invalid url
     </mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>enter text separated by commas</mat-label>
+    <textarea matInput required placeholder="a, b, c" name="tags" formControlName="tags"></textarea>
+  </mat-form-field>
   <button mat-stroked-button [disabled]="shortenerForm.invalid">
     Generate
   </button>
