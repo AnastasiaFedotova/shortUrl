@@ -8,7 +8,7 @@
   <h2>tags: </h2>
   <ul>
     <ol *ngFor="let tag of link.tags">
-      <a>{{tag}}</a>
+      <a routerLink="../../{{tag}}">{{tag}}</a>
     </ol>
   </ul>
   <app-comments [linkId]="link.id"></app-comments>

@@ -11,6 +11,11 @@ export const linksReducer = (
         ...state,
         links: action.payload
       };
+    case ELinksActions.GetTagsLinksSuccess:
+      return {
+        ...state,
+        links: action.payload
+      };
     default:
       return state;
   }

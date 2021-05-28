@@ -33,6 +33,12 @@ export class UserSessionService {
     });
   }
 
+  readTagsLinksList(tag: string): Observable<ShortLinks[]> {
+    return this.http.get<ShortLinks[]>(`${this.urlApiLinksList}/${tag}`, {
+      withCredentials: true
+    });
+  }
+
   removeSession() {
     return this.http.delete(this.urlApiAuth, {
       withCredentials: true

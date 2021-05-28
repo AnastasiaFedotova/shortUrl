@@ -40,7 +40,7 @@ export class ShortenerUrlComponent implements OnInit {
     const link = {
       url: this.shortenerForm.value.url,
       userId: null,
-      tags: this.shortenerForm.value.tags.split(",")
+      tags: this.shortenerForm.value.tags?.split(",").map(elem => elem.trim())
     };
 
     try {
