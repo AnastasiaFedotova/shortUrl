@@ -7,7 +7,7 @@
   <p class="users-links__views">views: {{link.view_count || 0}}</p>
   <h2>tags: </h2>
   <ul>
-    <ol *ngFor="let tag of this.tags">
+    <ol *ngFor="let tag of tags">
       <a routerLink="../../{{tag}}">{{tag}}</a>
     </ol>
   </ul>
