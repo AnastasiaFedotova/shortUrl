@@ -15,9 +15,11 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class LinkPageComponent implements OnInit {
   linksId: string;
+  links: ShortLinks[];
   link: ShortLinks;
   serverUrl: string = environment.serverUrl;
   subscription: Subscription;
+  tags: {};
   constructor(private activateRoute: ActivatedRoute, private store: Store<AppState>) {
     this.subscription = this.activateRoute.params.subscribe((params) => this.linksId = params['id']);
     this.store.dispatch(new GetLinks());
@@ -25,7 +27,9 @@ export class LinkPageComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(select(selectLinksList)).subscribe(value => {
-      this.link = value.find(elem => elem.id == this.linksId)
+      this.links = value.filter(elem => elem.id == this.linksId);
+      this.tags = this.links?.map(link => link["Tags.name"]);
+      this.link = this.links[0];
     });
   }
 }

@@ -1,4 +1,5 @@
 export interface ShortLinks {
+  [x: string]: any;
   id?: string,
   original_url: string;
   short_url: string | null;
