@@ -33,11 +33,13 @@
   text-transform: uppercase;
   background-color: #8192ee;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .shortener-form__btn:disabled {
   background-color: #e0e0e0be;
   color: #9c9c9cbe;
+  cursor: inherit;
 }
 
 .shortener-form__tags {
