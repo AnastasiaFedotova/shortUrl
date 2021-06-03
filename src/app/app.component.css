@@ -1,1 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding-right: 20px;
+  width: 100vw;
+  height: 100px;
+}
 
+.header__auth-link {
+  padding-right: 20px;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+.header__auth-link,
+.header__auth-link:visited,
+.header__auth-link:hover,
+.header__auth-link:active {
+  color: #6B6B6B;
+  text-decoration: none;
+}

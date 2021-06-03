@@ -1,19 +1,25 @@
-{{isAuthorized}}
+<header class="header">
+  <div class="header__logo">
+    <a href="">
+      <img src="./../assets/images/logo.png" alt="logo">
+    </a>
+  </div>
+  <div *ngIf="!isAuthorized" class="header__auth header__auth_off">
+    <img src="./../assets/images/user.png" (click)="isOpenModalWindow(true)">
+  </div>
+  <div *ngIf="isAuthorized" class="header__auth header__auth_on">
+    <a class="header__auth-link"routerLink="/linkList">{{user?.login}}</a>
+    <a class="header__btn-exit" (click)="logOut()">
+      <img src="./../assets/images/exit.png" alt="logOut">
+    </a>
+  </div>
+</header>
 
-<div>
-  <h1 class="title">{{title}}</h1>
-  <div *ngIf="!isAuthorized">
-    <nav class="nav">
+<div class="modal" *ngIf="isOpenWindow">
+    <nav class="app-page__nav nav">
       <a class="nav__link" routerLink="/registration" mat-button>Sign up</a>
       <a class="nav__link" routerLink="/logIn" mat-button>Log in</a>
     </nav>
-  </div>
-  <div *ngIf="isAuthorized">
-    <nav class="nav">
-      <a class="nav__link" routerLink="/linkList" mat-button>My links</a>
-      <a class="nav__link" mat-button (click)="logOut()">Log out</a>
-    </nav>
-  </div>
-  <router-outlet></router-outlet>
-  <app-shortener-url></app-shortener-url>
 </div>
+<router-outlet></router-outlet>
+<app-shortener-url></app-shortener-url>

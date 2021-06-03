@@ -28,7 +28,7 @@ export class LinkPageComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select(selectLinksList)).subscribe(value => {
       this.links = value.filter(elem => elem.id == this.linksId);
-      this.tags = this.links?.map(link => link["Tags.name"]);
+      this.tags = this.links?.map(link => link.tag);
       this.link = this.links[0];
     });
   }

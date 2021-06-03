@@ -1,12 +1,12 @@
-<div>
-  <ul>
-    <li *ngFor="let comment of comments">
-      <span>{{comment.User.login}}</span>
+<div class="comments">
+  <ul class="comments__list">
+    <li class="comments__item" *ngFor="let comment of comments">
+      <span>{{comment.user.login}}</span>
       <span>{{comment.message}}</span>
     </li>
   </ul>
-  <form *ngIf="authUser" [formGroup]="commentForm" (submit)="addComment()">
-    <h2>{{authUser?.login}}</h2>
+  <form class="comments__form" *ngIf="authUser" [formGroup]="commentForm" (submit)="addComment()">
+    <h2 class="comments__author">{{authUser?.login}}</h2>
     <mat-form-field appearance="outline">
       <mat-label>{{authUser?.login}}, Enter comment</mat-label>
       <textarea matInput placeholder="Add comment" required name="link" formControlName="comment"></textarea>
