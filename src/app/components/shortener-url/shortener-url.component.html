@@ -1,11 +1,18 @@
 <form [formGroup]="shortenerForm" class="shortener-form" (submit)="submit()">
-  <input class="shortener-form__input" type="url" required placeholder="http://Google.com" name="url" formControlName="url">
-  <textarea class="shortener-form__tags" placeholder="a, b, c" name="tags" formControlName="tags"></textarea>
+  <input class="shortener-form__input" type="url" required placeholder="Your link" name="url" formControlName="url">
+  <textarea class="shortener-form__tags" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
   <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
     Generate
   </button>
-  <span class="shortener-form__text">
-    Generated link:
-  </span>
-  <a class="shortener-form__short-link" href="http://localhost:3000/{{shortLink}}" target="_blank">{{shortLink}}</a>
+  <div *ngIf="error?.message">
+    <span class="shortener-form__text shortener-form__text_err">
+      {{error.message}}
+    </span>
+  </div>
+  <div *ngIf="shortLink">
+    <span class="shortener-form__text">
+      Generated link:
+    </span>
+    <a class="shortener-form__short-link" href="http://localhost:3000/{{shortLink}}" target="_blank">{{shortLink}}</a>
+  </div>
 </form>

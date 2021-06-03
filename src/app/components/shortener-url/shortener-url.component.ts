@@ -13,17 +13,29 @@ import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;
   shortLink: string;
+  error: {
+    message: string;
+  };
   isValidHttpUrl;
 
   constructor(private store: Store<AppState>) {
-    this.isValidHttpUrl = function (control: FormControl): { [s: string]: boolean } {
+    this.isValidHttpUrl = (control: FormControl): { [s: string]: boolean } => {
       try {
         if (control.value) {
           new URL(control.value);
         }
+
+        this.error = {
+          message: null
+        };
+
         return null;
       } catch (_) {
-        return { "isUrl": true };
+        this.error = {
+          message: 'enter url'
+        };
+
+        return { 'isUrl': true };
       }
     }
 

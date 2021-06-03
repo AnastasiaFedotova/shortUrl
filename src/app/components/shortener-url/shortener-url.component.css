@@ -1,1 +1,59 @@
+.shortener-form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  margin: 0 auto;
+  max-width: 528px;
+  width: 100vw;
+  height: 100vh;
+}
 
+.shortener-form__input {
+  padding: 0 15px;
+  box-sizing: border-box;
+  width: 396px;
+  height: 63px;
+  border: none;
+  box-shadow: 0px 10px 20px -10px #d3d3d3;
+}
+
+.shortener-form__text_err {
+  color: #d86d72;
+}
+
+.shortener-form__btn {
+  position: absolute;
+  right: 14px;
+  width: 144px;
+  height: 44px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  background-color: #8192ee;
+  color: #ffffff;
+}
+
+.shortener-form__btn:disabled {
+  background-color: #e0e0e0be;
+  color: #9c9c9cbe;
+}
+
+.shortener-form__tags {
+  position: absolute;
+  display: none;
+  bottom: 35vh;
+  padding: 10px 20px 0px 20px;
+  box-shadow: 0px 10px 20px -10px #d3d3d3;
+}
+
+.shortener-form__input:focus+.shortener-form__tags,
+.shortener-form__tags:hover,
+.shortener-form__tags:focus {
+  display: inline-block;
+}
+
+.shortener-form__tags:focus {
+  width: 50%;
+}
