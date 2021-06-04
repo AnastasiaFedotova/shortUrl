@@ -1,11 +1,11 @@
 .shortener-form {
   position: relative;
+  top: 40vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  top: 0;
-  margin: 40vh auto;
+  margin: 0 auto;
   max-width: 528px;
   width: 100vw;
   height: 166px;
