@@ -12,12 +12,17 @@
 }
 
 .shortener-form__input {
-  padding: 0 15px;
+  padding: 0 17px;
   box-sizing: border-box;
   width: 396px;
   height: 63px;
   border: none;
   box-shadow: 0px 10px 20px -10px #d3d3d3;
+}
+
+.shortener-form__text {
+  position: absolute;
+  bottom: 41vh;
 }
 
 .shortener-form__text_err {
@@ -36,10 +41,15 @@
   cursor: pointer;
 }
 
+.shortener-form__btn:hover {
+  box-shadow: 0px 10px 20px -10px #d3d3d3;
+}
+
 .shortener-form__btn:disabled {
   background-color: #e0e0e0be;
   color: #9c9c9cbe;
   cursor: inherit;
+  box-shadow: none;
 }
 
 .shortener-form__tags {

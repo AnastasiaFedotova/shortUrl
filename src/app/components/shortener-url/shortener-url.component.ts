@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
 import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.selectors';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-shortener-url',
@@ -13,6 +14,7 @@ import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;
   shortLink: string;
+  serverUrl: string = environment.serverUrl;
   error: {
     message: string;
   };

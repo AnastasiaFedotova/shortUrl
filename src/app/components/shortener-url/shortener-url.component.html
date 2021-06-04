@@ -4,15 +4,15 @@
   <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
     Generate
   </button>
-  <div *ngIf="error?.message">
-    <span class="shortener-form__text shortener-form__text_err">
+  <div class="shortener-form__text shortener-form__text_err" *ngIf="error?.message">
+    <span>
       {{error.message}}
     </span>
   </div>
-  <div *ngIf="shortLink">
-    <span class="shortener-form__text">
+  <div class="shortener-form__text" *ngIf="shortLink">
+    <span>
       Generated link:
     </span>
-    <a class="shortener-form__short-link" href="http://localhost:3000/{{shortLink}}" target="_blank">{{shortLink}}</a>
+    <a class="shortener-form__short-link" href="{{serverUrl}}/{{shortLink}}" target="_blank">{{shortLink}}</a>
   </div>
 </form>

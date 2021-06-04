@@ -1,15 +1,15 @@
 <header class="header">
   <div class="header__logo">
     <a href="">
-      <img src="./../assets/images/logo.png" alt="logo">
+      <img src="./../assets/images/logo.png" width="100" height="100" alt="logo">
     </a>
   </div>
   <div *ngIf="!isAuthorized" class="header__auth header__auth_off">
-    <img src="./../assets/images/user.png" (click)="isOpenModalWindow(true)">
+    <img src="./../assets/images/user.png" width="34.38" height="37.22" (click)="isOpenModalWindow(true)">
   </div>
   <div *ngIf="isAuthorized" class="header__auth header__auth_on">
     <a class="header__auth-link"routerLink="/linkList">{{user?.login}}</a>
-    <a class="header__btn-exit" (click)="logOut()">
+    <a class="header__btn-exit " (click)="logOut()">
       <img src="./../assets/images/exit.png" alt="logOut">
     </a>
   </div>
