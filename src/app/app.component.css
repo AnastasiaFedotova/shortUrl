@@ -3,9 +3,8 @@
   top: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   box-sizing: border-box;
-  padding-right: 20px;
   width: 100vw;
   height: 100px;
 }
@@ -14,6 +13,10 @@
   padding-right: 20px;
   font-size: 16px;
   vertical-align: top;
+}
+
+.header__auth.header__auth_off {
+  padding: 22px 26px;
 }
 
 .header__auth-link,
