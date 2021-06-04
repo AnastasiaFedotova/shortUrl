@@ -1,6 +1,6 @@
 <form [formGroup]="shortenerForm" class="shortener-form" (submit)="submit()">
   <input class="shortener-form__input" type="url" required placeholder="Your link" name="url" formControlName="url">
-  <textarea class="shortener-form__tags" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
+  <textarea class="shortener-form__tags" *ngIf="!error?.message" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
   <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
     Generate
   </button>
