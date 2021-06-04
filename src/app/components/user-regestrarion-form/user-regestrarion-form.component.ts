@@ -10,7 +10,7 @@ import { AppState } from 'src/app/store/state/app.state';
 @Component({
   selector: 'app-user-regestrarion-form',
   templateUrl: './user-regestrarion-form.component.html',
-  styleUrls: ['./user-regestrarion-form.component.css'],
+  styleUrls: ['./user-regestrarion-form.component.scss'],
   providers: [UserRegistrationService]
 })
 

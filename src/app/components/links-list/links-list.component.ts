@@ -8,7 +8,7 @@ import { selectUsersLinksList } from 'src/app/store/selectors/usersLinkList.sele
 @Component({
   selector: 'app-links-list',
   templateUrl: './links-list.component.html',
-  styleUrls: ['./links-list.component.css']
+  styleUrls: ['./links-list.component.scss']
 })
 export class LinksListComponent {
   links: ShortLinks[];

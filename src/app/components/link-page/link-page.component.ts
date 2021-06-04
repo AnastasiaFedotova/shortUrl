@@ -11,7 +11,7 @@ import { AppState } from 'src/app/store/state/app.state';
 @Component({
   selector: 'app-link-page',
   templateUrl: './link-page.component.html',
-  styleUrls: ['./link-page.component.css']
+  styleUrls: ['./link-page.component.scss']
 })
 export class LinkPageComponent implements OnInit {
   linksId: string;

@@ -10,7 +10,7 @@ import { AppState } from 'src/app/store/state/app.state';
 @Component({
   selector: 'app-links-tag-page',
   templateUrl: './links-tag-page.component.html',
-  styleUrls: ['./links-tag-page.component.css']
+  styleUrls: ['./links-tag-page.component.scss']
 })
 export class LinksTagPageComponent implements OnInit {
   tag: string;

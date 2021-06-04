@@ -9,7 +9,7 @@ import { LogIn } from 'src/app/store/actions/users.actions';
 @Component({
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
-  styleUrls: ['./log-in-form.component.css'],
+  styleUrls: ['./log-in-form.component.scss'],
 })
 export class LogInFormComponent implements OnInit {
   logInForm: FormGroup;

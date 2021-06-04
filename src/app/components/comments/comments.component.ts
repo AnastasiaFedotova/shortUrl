@@ -14,7 +14,7 @@ import { AddComment } from 'src/app/store/actions/addedComment.actions';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
   @Input() linkId: string;

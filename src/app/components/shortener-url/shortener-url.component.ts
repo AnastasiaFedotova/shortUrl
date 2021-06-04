@@ -9,7 +9,7 @@ import { environment } from './../../../environments/environment';
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
-  styleUrls: ['./shortener-url.component.css']
+  styleUrls: ['./shortener-url.component.scss']
 })
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;

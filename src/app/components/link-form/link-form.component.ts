@@ -11,7 +11,7 @@ import { environment } from './../../../environments/environment';
 @Component({
   selector: 'app-link-form',
   templateUrl: './link-form.component.html',
-  styleUrls: ['./link-form.component.css']
+  styleUrls: ['./link-form.component.scss']
 })
 export class LinkFormComponent implements OnInit {
   @Input() link: ShortLinks;
