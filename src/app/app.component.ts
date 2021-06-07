@@ -41,6 +41,7 @@ export class AppComponent {
   }
 
   isOpenModalWindow(open: boolean) {
+    this.router.navigate(['/logIn']);
     this.isOpenWindow = open;
   }
 
