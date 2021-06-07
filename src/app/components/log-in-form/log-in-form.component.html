@@ -1,14 +1,8 @@
-<form [formGroup]="logInForm" class="logIn-form" (submit)="submit()">
-  <mat-form-field appearance="outline">
-    <mat-label>Enter login</mat-label>
-    <input matInput type="login" required placeholder="login" name="login" formControlName="login">
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Enter password</mat-label>
-    <input matInput type="password" required placeholder="password" name="password" formControlName="password">
-  </mat-form-field>
-  <button mat-stroked-button>
-    ok
+<form class="logIn-form" [formGroup]="logInForm" (submit)="submit()">
+  <input class="logIn-form__input" matInput type="login" required placeholder="login" name="login" formControlName="login">
+  <input class="logIn-form__input" matInput type="password" required placeholder="password" name="password" formControlName="password">
+  <button class="logIn-form__btn" [disabled]="logInForm.invalid">
+    Login
   </button>
   <p class="logIn-form__message">{{logInMessage}}</p>
 </form>

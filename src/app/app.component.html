@@ -17,9 +17,14 @@
 
 <div class="modal" *ngIf="isOpenWindow">
     <nav class="app-page__nav nav">
-      <a class="nav__link" routerLink="/registration" mat-button>Sign up</a>
-      <a class="nav__link" routerLink="/logIn" mat-button>Log in</a>
+      <h1 class="nav__header">Authorization</h1>
+      <div class="nav__link-group">
+        <input class="nav__link" id="login" checked type="radio" name="auth" value="login" routerLink="/logIn">
+        <label for="login">Login</label>
+        <input class="nav__link" id="registration" type="radio" name="auth" value="registration" routerLink="/registration">
+        <label for="registration">Register</label>
+      </div>
+      <router-outlet></router-outlet>
     </nav>
-    <router-outlet></router-outlet>
 </div>
 <app-shortener-url></app-shortener-url>

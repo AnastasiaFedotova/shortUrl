@@ -3,7 +3,7 @@
   top: 0;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   box-sizing: border-box;
   width: 100vw;
   height: 100px;
@@ -32,4 +32,47 @@
 
 .modal {
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  .nav {
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 75px 95px 0 95px;
+    width: 624px;
+    height: 497px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px 0px #d3d3d3;
+    .nav__header {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .nav__link-group {
+      margin: 16px;
+      text-align: center;
+    }
+
+    .nav__link {
+      display: none;
+      font-size: 16px;
+      &:checked+label {
+        color: #000000;
+      }
+
+      &+label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #9c9c9cbe;
+        cursor: pointer;
+        &:nth-child(2) {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
 }
