@@ -1,23 +1,8 @@
 <form [formGroup]="registrationForm" class="registration-form" (submit)="submit()">
-  <mat-form-field appearance="outline">
-    <mat-label>Enter LOGIN</mat-label>
-    <input matInput type="login" required placeholder="login" name="login" formControlName="login">
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Enter password</mat-label>
-    <input matInput type="password" required placeholder="password" name="password" formControlName="password">
-    <mat-error *ngIf="registrationForm.controls.password.hasError('valid') && !registrationForm.controls.password.untouched">
-      Password is not valid
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Repeat password</mat-label>
-    <input matInput type="password" required placeholder="Repeat password" name="verification" formControlName="verification">
-    <mat-error *ngIf="registrationForm.controls.verification.hasError('match') && !registrationForm.controls.verification.untouched">
-      Password mismatch
-    </mat-error>
-  </mat-form-field>
-  <button mat-stroked-button [disabled]="registrationForm.invalid">
+  <input class="registration-form__input" matInput type="login" required placeholder="login" name="login" formControlName="login">
+  <input class="registration-form__input" matInput type="password" required placeholder="password" name="password" formControlName="password">
+  <input class="registration-form__input" matInput type="password" required placeholder="Repeat password" name="verification" formControlName="verification">
+  <button class="registration-form__btn" [disabled]="registrationForm.invalid">
     ok
   </button>
   <p class="registration-form__message">{{registrationMessage}}</p>
