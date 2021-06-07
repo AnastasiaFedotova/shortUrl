@@ -31,6 +31,7 @@ export class AppComponent {
     this.store.pipe(select(selectedAuth)).subscribe(val => {
       this.isAuthorized = val;
     })
+
     this.store.pipe(select(selectedAuthUserId)).subscribe(id => {
       if (id) this.store.dispatch(new GetUser(id));
     })
@@ -41,7 +42,7 @@ export class AppComponent {
   }
 
   isOpenModalWindow(open: boolean) {
-    this.router.navigate(['/logIn']);
+    if(open) this.router.navigate(['/logIn']);
     this.isOpenWindow = open;
   }
 

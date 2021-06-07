@@ -25,11 +25,13 @@ export class UserRegestrarionFormComponent implements OnInit {
       const minPasswordLength = 4;
       try {
         if (control.value.length > minPasswordLength) {
+          this.registrationMessage = '';
           return null;
         } else {
           throw new Error();
         };
       } catch (_err) {
+        this.registrationMessage = 'minimum password length 4';
         return { "valid": true };
       }
 
@@ -38,11 +40,13 @@ export class UserRegestrarionFormComponent implements OnInit {
     this.matchPasswords = (control) => {
       try {
         if (control.value === this.registrationForm.value.password) {
+          this.registrationMessage = '';
           return null;
         } else {
           throw new Error();
         }
       } catch (_err) {
+        this.registrationMessage = 'Password mismatch';
         return { "match": true };
       }
     }

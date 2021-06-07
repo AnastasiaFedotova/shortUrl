@@ -9,14 +9,14 @@
   </div>
   <div *ngIf="isAuthorized" class="header__auth header__auth_on">
     <a class="header__auth-link"routerLink="/linkList">{{user?.login}}</a>
-    <a class="header__btn-exit " (click)="logOut()">
+    <a class="header__btn-exit " (click)="logOut(); isOpenModalWindow(false)">
       <img src="./../assets/images/exit.png" alt="logOut">
     </a>
   </div>
 </header>
 
-<div class="modal" *ngIf="isOpenWindow">
-    <nav class="app-page__nav nav">
+<div *ngIf="!isAuthorized && isOpenWindow" class="modal" (click)="isOpenModalWindow(false)">
+    <nav class="app-page__nav nav" (click)="$event.stopPropagation()">
       <h1 class="nav__header">Authorization</h1>
       <div class="nav__link-group">
         <input class="nav__link" id="login" checked type="radio" name="auth" value="login" routerLink="/logIn">
