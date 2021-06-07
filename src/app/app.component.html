@@ -14,9 +14,16 @@
     </a>
   </div>
 </header>
+<div>
+  <router-outlet></router-outlet>
+</div>
 
 <div *ngIf="!isAuthorized && isOpenWindow" class="modal" (click)="isOpenModalWindow(false)">
     <nav class="app-page__nav nav" (click)="$event.stopPropagation()">
+      <div class="modal__close" (click)="isOpenModalWindow(false)">
+        <span>&#10006;</span>
+      </div>
+
       <h1 class="nav__header">Authorization</h1>
       <div class="nav__link-group">
         <input class="nav__link" id="login" checked type="radio" name="auth" value="login" routerLink="/logIn">
@@ -27,4 +34,3 @@
       <router-outlet></router-outlet>
     </nav>
 </div>
-<app-shortener-url></app-shortener-url>

@@ -7,7 +7,6 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100px;
-
   .header__auth {
     cursor: pointer;
 
@@ -16,13 +15,13 @@
     }
 
     &.header__auth_on {
-      padding: 26px 22px;
+      padding: 28px 25px;
     }
   }
 
   .header__auth-link {
     padding-right: 20px;
-    font-size: 16px;
+    font-size: 14px;
     vertical-align: top;
 
     &,
@@ -45,6 +44,17 @@
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(3px);
+  .modal__close {
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: #000000;
+    }
+  }
+
   .nav {
     position: relative;
     z-index: 10;
