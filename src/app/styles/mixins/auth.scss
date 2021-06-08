@@ -9,7 +9,7 @@
   background-color: $color-text-dark;
   cursor: pointer;
   &:disabled {
-    background-color: #e0e0e0be;
+    background-color: $color-disabled-background;
     cursor: default;
   }
 }

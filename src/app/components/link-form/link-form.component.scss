@@ -4,7 +4,7 @@
   width: 100%;
   height: 100%;
   font-size: 14px;
-  color: #447dffe3;
+  color: $color-link-form-text;
   & > * {
     padding-left: 37px;
     box-sizing: border-box;
@@ -20,7 +20,7 @@
   .link__url:visited,
   .link__url:hover,
   .link__url:focus {
-    color: #447dffe3;
+    color: $color-link-form-text;
     text-decoration: none;
   }
 }

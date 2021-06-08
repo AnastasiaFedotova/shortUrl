@@ -1,3 +1,5 @@
+@import './../../styles/vars/colors.scss';
+
 .shortener-form {
   position: relative;
   top: 40vh;
@@ -16,7 +18,7 @@
     width: 396px;
     height: 63px;
     border: none;
-    box-shadow: 0px 10px 20px -10px #d3d3d3;
+    box-shadow: 0px 10px 20px -10px $color-shadow;
   }
 
   .shortener-form__text {
@@ -24,7 +26,7 @@
     margin: 15px 22px;
     bottom: 5px;
     &.shortener-form__text_err {
-      color: #d86d72;
+      color: $color-error-text;
     }
   }
 
@@ -42,17 +44,17 @@
     height: 44px;
     border-radius: 2px;
     text-transform: uppercase;
-    background-color: #8192ee;
-    color: #ffffff;
+    background-color: $color-active-btn;
+    color: $color-text-light;
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0px 10px 20px -10px #d3d3d3;
+      box-shadow: 0px 10px 20px -10px $color-shadow;
     }
 
     &:disabled {
-      background-color: #e0e0e0be;
-      color: #9c9c9cbe;
+      background-color: $color-disabled-background;
+      color: $color-disabled;
       cursor: inherit;
       box-shadow: none;
     }
@@ -63,7 +65,7 @@
     bottom: -25px;
     right: -50px;
     padding: 10px 20px 0px 20px;
-    box-shadow: 0px 10px 20px -10px #d3d3d3;
+    box-shadow: 0px 10px 20px -10px $color-shadow;
     border-radius: 2px;
 
     &:focus {
