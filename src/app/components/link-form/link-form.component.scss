@@ -14,6 +14,28 @@
     overflow: hidden;
   }
 
+  .link__form-edit {
+    position: relative;
+    overflow: visible;
+    .link__url {
+      line-height: 10px;
+    }
+
+    .link__btn-edit {
+      display: none;
+      position: absolute;
+      top: -8px;
+      right: 35px;
+      width: 35px;
+      height: 32px;
+      background: url(../../../assets/images/edit.png) center;
+      cursor: pointer;
+    }
+
+    &:hover > .link__btn-edit {
+      display: inline-block;
+    }
+  }
   .link__orig-url,
   .link__orig-url:visited,
   .link__orig-url:hover,
@@ -24,5 +46,10 @@
   .link__url:focus {
     color: $color-link-form-text;
     text-decoration: none;
+  }
+
+  .link__views,
+  .link__author {
+    color: $color-text-basic;
   }
 }
