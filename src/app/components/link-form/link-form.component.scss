@@ -36,6 +36,11 @@
       display: inline-block;
     }
   }
+
+  .link__tags_disabled {
+    color: $color-text-basic;
+  }
+
   .link__orig-url,
   .link__orig-url:visited,
   .link__orig-url:hover,
@@ -43,7 +48,11 @@
   .link__url,
   .link__url:visited,
   .link__url:hover,
-  .link__url:focus {
+  .link__url:focus,
+  .link__tag,
+  .link__tag:visited,
+  .link__tag:hover,
+  .link__tag:focus {
     color: $color-link-form-text;
     text-decoration: none;
   }

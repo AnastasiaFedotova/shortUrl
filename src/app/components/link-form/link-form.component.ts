@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { updateLinks } from 'src/app/interface/links';
@@ -22,6 +23,7 @@ export class LinkFormComponent implements OnInit {
   errorMessage: string;
   links: ShortLinks[];
   linkUrl: string;
+  tags: Array<string>;
   serverUrl: string = environment.serverUrl;
   constructor(private store: Store<AppState>) {
     this.linkForm = new FormGroup({
@@ -64,5 +66,7 @@ export class LinkFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.linkUrl = this.link.short_url;
+
+    this.tags = this.link.tag?.split(", ");
   }
 }

@@ -6,7 +6,12 @@
     </a>
     <button class="link__btn-edit" type="button" (click)="startChangeLinks()"></button>
   </div>
-  <span class="link__tags">{{link.tag || 'empty'}}</span>
+  <div *ngIf="link.tag" class="link__tags">
+    <a *ngFor="let tag of tags" class="link__tag" routerLink="./{{tag}}">
+      {{tag}}
+    </a>
+  </div>
+  <span *ngIf="!link.tag" class="link__tags link__tags_disabled">empty</span>
   <span class="link__views">{{link.view_count || 0}}</span>
   <span class="link__author">{{author}}</span>
 </div>
