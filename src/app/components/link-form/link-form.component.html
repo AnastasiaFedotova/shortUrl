@@ -1,26 +1,20 @@
-<div *ngIf="!isChange">
-  <a href="{{serverUrl}}/{{linkUrl}}">
+<div class="link" *ngIf="!isChange">
+  <a class="link__orig-url" href="{{link.original_url}}">{{link.original_url}}</a>
+  <a class="link__url" href="{{serverUrl}}/{{linkUrl}}">
     {{linkUrl}}
   </a>
-  <span class="users-links__views">views: {{link.view_count || 0}}</span>
-  <button type="button" mat-stroked-button (click)="startChangeLinks()">
+  <span class="link__views">{{link.view_count || 0}}</span>
+  <button class="link__btn-edit" type="button" (click)="startChangeLinks()">
     edit
   </button>
 </div>
 <div *ngIf="isChange">
   <form [formGroup]="linkForm" (submit)="changeLink(link)">
-    <mat-form-field appearance="outline">
-      <mat-label>Enter new url</mat-label>
-      <input matInput required placeholder={{linkUrl}} name="link" formControlName="link">
-      <mat-error *ngIf="linkForm.controls.link.hasError('minLength') &&
-        linkForm.controls.link.hasError('maxLength') && linkForm.controls.link.untouched">
-        Invalid length
-      </mat-error>
-    </mat-form-field>
-    <button mat-stroked-button  [disabled]="linkForm.invalid">
+    <input required placeholder={{linkUrl}} name="link" formControlName="link">
+    <button [disabled]="linkForm.invalid">
       ok
     </button>
-    <button mat-stroked-button (click)="cancel()" type="button">
+    <button (click)="cancel()" type="button">
       cancel
     </button>
   </form>

@@ -1,0 +1,23 @@
+@import './../vars/colors.scss';
+
+@mixin auth-btn {
+  height: 46px;
+  width: 468px;
+  font-size: 14px;
+  font-weight: bold;
+  color: $color-text-light;
+  background-color: $color-text-dark;
+  cursor: pointer;
+  &:disabled {
+    background-color: #e0e0e0be;
+    cursor: default;
+  }
+}
+
+@mixin auth-input {
+  margin-bottom: 16px;
+  padding: 0px 16px;
+  height: 46px;
+  width: 435px;
+  border: 1px solid $color-text-dark;
+}

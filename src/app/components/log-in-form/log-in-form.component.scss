@@ -1,25 +1,13 @@
+@import './../../styles/mixins/auth.scss';
+
 .logIn-form {
   z-index: 11;
   .logIn-form__input {
-    margin-bottom: 16px;
-    padding: 0px 16px;
-    height: 46px;
-    width: 435px;
-    border: 1px solid #000000;
+    @include auth-input;
   }
 
   .logIn-form__btn {
     margin-top: 30px;
-    height: 46px;
-    width: 468px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #000000;
-    cursor: pointer;
-    &:disabled {
-      background-color: #e0e0e0be;
-      cursor: default;
-    }
+    @include auth-btn;
   }
 }

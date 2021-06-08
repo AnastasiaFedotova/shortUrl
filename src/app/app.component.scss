@@ -1,3 +1,5 @@
+@import './styles/vars/colors.scss';
+
 .header {
   position: absolute;
   top: 0;
@@ -51,7 +53,7 @@
     font-size: 20px;
     cursor: pointer;
     &:hover {
-      color: #000000;
+      color: $primary-color;
     }
   }
 
@@ -62,8 +64,8 @@
     padding: 75px 95px 0 95px;
     width: 624px;
     height: 497px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 20px 0px #d3d3d3;
+    background-color: $color-text-light;
+    box-shadow: 0px 0px 20px 0px $color-shadow;
     .nav__header {
       font-size: 30px;
       text-align: center;
@@ -78,7 +80,7 @@
       display: none;
       font-size: 16px;
       &:checked+label {
-        color: #000000;
+        color: $primary-color;
       }
 
       &+label {
