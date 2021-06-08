@@ -20,6 +20,7 @@ export class LinkFormComponent implements OnInit {
   isChange: boolean = false;
   author: string;
   errorMessage: string;
+  links: ShortLinks[];
   linkUrl: string;
   serverUrl: string = environment.serverUrl;
   constructor(private store: Store<AppState>) {

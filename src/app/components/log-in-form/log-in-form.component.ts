@@ -37,7 +37,6 @@ export class LogInFormComponent implements OnInit {
       this.store.dispatch(new OpenSession(true));
 
       this.store.pipe(select(selectedAuth)).subscribe(val => {
-        debugger
         if(val) {
 
           this.logInForm.reset();

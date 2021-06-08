@@ -11,7 +11,7 @@ import { selectUsersLinksList } from 'src/app/store/selectors/usersLinkList.sele
   styleUrls: ['./links-list.component.scss']
 })
 export class LinksListComponent {
-  links: ShortLinks[];
+  links: ShortLinks[] = [];
 
   constructor(private store: Store<AppState>) {
     this.store.dispatch(new GetUsersLinks());
@@ -19,7 +19,14 @@ export class LinksListComponent {
 
   ngOnInit() {
     this.store.pipe(select(selectUsersLinksList)).subscribe(value => {
-      this.links = value
-    });
+      value.filter((link, index, self) => {
+        if (index === self.findIndex((t) => t.id === link.id)) {
+          this.links.push(Object.assign({}, link));
+          return true;
+        }
+        const updatedLink = this.links.find((link) => link.id === self[index].id);
+        updatedLink.tag += `, ${self[index].tag}`;
+      })
+    })
   }
 }
