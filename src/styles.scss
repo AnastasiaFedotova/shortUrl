@@ -1,3 +1,5 @@
+@import './app/styles/vars/colors.scss';
+
 html,
 body {
   height: 100%;
@@ -8,7 +10,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #F5F6FA;
   font-size: 14px;
-  color: #6B6B6B;
+  color: $color-text-basic;
 }
 
 input,
