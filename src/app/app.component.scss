@@ -53,7 +53,7 @@
     font-size: 20px;
     cursor: pointer;
     &:hover {
-      color: $primary-color;
+      color: $color-text-dark;
     }
   }
 
@@ -80,7 +80,7 @@
       display: none;
       font-size: 16px;
       &:checked+label {
-        color: $primary-color;
+        color: $color-text-dark;
       }
 
       &+label {
