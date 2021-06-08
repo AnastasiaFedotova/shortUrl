@@ -1,12 +1,16 @@
 <div class="link" *ngIf="!isChange">
   <a class="link__orig-url" href="{{link.original_url}}">{{link.original_url}}</a>
-  <a class="link__url" href="{{serverUrl}}/{{linkUrl}}">
-    {{linkUrl}}
-  </a>
+  <div class="link__form-edit">
+    <a class="link__url" href="{{serverUrl}}/{{linkUrl}}">
+      {{linkUrl}}
+    </a>
+    <button class="link__btn-edit" type="button" (click)="startChangeLinks()">
+      edit
+    </button>
+  </div>
   <span class="link__views">{{link.view_count || 0}}</span>
-  <button class="link__btn-edit" type="button" (click)="startChangeLinks()">
-    edit
-  </button>
+  <span class="link__tags">{{link.tags || 'empty'}}</span>
+  <span class="link__author">{{author}}</span>
 </div>
 <div *ngIf="isChange">
   <form [formGroup]="linkForm" (submit)="changeLink(link)">
