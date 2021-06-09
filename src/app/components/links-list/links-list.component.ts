@@ -12,7 +12,9 @@ import { selectUsersLinksList } from 'src/app/store/selectors/usersLinkList.sele
 })
 export class LinksListComponent {
   links: ShortLinks[] = [];
-
+  header: string = "My Links";
+  subtitles: string[] = ["Original link", "Short link", "Tags", "Views", "Author"];
+  content: string = "Hello";
   constructor(private store: Store<AppState>) {
     this.store.dispatch(new GetUsersLinks());
   }
@@ -21,11 +23,9 @@ export class LinksListComponent {
     this.store.pipe(select(selectUsersLinksList)).subscribe(value => {
       value.filter((link, index, self) => {
         if (index === self.findIndex((t) => t.id === link.id)) {
-          this.links.push(Object.assign({}, link));
+          this.links.push({...link});
           return true;
         }
-        const updatedLink = this.links.find((link) => link.id === self[index].id);
-        updatedLink.tag += `, ${self[index].tag}`;
       })
     })
   }

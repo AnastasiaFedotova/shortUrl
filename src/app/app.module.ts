@@ -31,6 +31,7 @@ import { GettedUserEffect } from './store/effects/gettedUser.effects';
 import { AddedCommentsEffect } from './store/effects/addedComment.effects';
 import { AuthUserIdEffect } from './store/effects/authUsers.effects';
 import { LinksTagPageComponent } from './components/links-tag-page/links-tag-page.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LinksTagPageComponent } from './components/links-tag-page/links-tag-pag
     LinkFormComponent,
     LinkPageComponent,
     CommentsComponent,
-    LinksTagPageComponent
+    LinksTagPageComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

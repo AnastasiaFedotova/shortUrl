@@ -14,11 +14,15 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class LinksTagPageComponent implements OnInit {
   tag: string;
+  header: string = '';
   subscription: Subscription;
-  links: ShortLinks[];
+  links: ShortLinks[] = [];
+  subtitles: string[] = ["Original link", "Short link", "Tags", "Views"];
   constructor(private activateRoute: ActivatedRoute, private store: Store<AppState>) {
     this.subscription = this.activateRoute.params.subscribe((params) => this.tag = params['tag']);
     this.store.dispatch(new GetTagsLinks(this.tag));
+
+    this.header = `Tag: ${this.tag}`;
   }
 
   ngOnInit() {

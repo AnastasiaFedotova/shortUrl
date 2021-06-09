@@ -1,0 +1,15 @@
+<div class="table">
+  <h1 class="table__header">
+    {{header}}
+  </h1>
+  <div class="table__item-group">
+    <div class="table__subtitles">
+      <span *ngFor="let subtitle of subtitles" class="table__subtitle">
+        {{subtitle}}
+      </span>
+    </div>
+    <div *ngFor="let item of content" class="table__items">
+      <app-link-form [link]="item" class="table__item"></app-link-form>
+    </div>
+  </div>
+</div>

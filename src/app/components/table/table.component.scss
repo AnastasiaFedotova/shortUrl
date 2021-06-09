@@ -1,0 +1,63 @@
+@import './../../styles/vars/colors.scss';
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .table__header {
+    margin-top: 38px;
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+
+  .table__item-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 88px 20px;
+    background-color: $color-text-light;
+    width: 90%;
+    max-width: 1175px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 20px 0px $color-shadow;
+    overflow: hidden;
+    .table__subtitles,
+    .table__items {
+      margin: 0;
+      height: 60px;
+    }
+
+    .table__subtitles,
+    .table__items {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: $color-active-btn;
+      color: $color-text-light;
+    }
+
+    .table__items {
+      width: 100%;
+      background-color: $color-text-light;
+      &:nth-child(even) {
+        background-color: #8191ee0a;
+      }
+    }
+
+    .table__subtitle {
+      padding-left: 37px;
+      box-sizing: border-box;
+      width: 20%;
+    }
+
+    .table__item {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

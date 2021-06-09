@@ -23,7 +23,7 @@ export class LinkFormComponent implements OnInit {
   errorMessage: string;
   links: ShortLinks[];
   linkUrl: string;
-  tags: Array<string>;
+  tags: string[];
   serverUrl: string = environment.serverUrl;
   constructor(private store: Store<AppState>) {
     this.linkForm = new FormGroup({
