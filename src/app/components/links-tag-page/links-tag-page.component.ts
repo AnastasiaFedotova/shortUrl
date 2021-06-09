@@ -17,11 +17,10 @@ export class LinksTagPageComponent implements OnInit {
   header: string = '';
   subscription: Subscription;
   links: ShortLinks[] = [];
-  subtitles: string[] = ["Original link", "Short link", "Tags", "Views"];
+  subtitles: string[] = ["Original link", "Short link", "Tags", "Views", "Author"];
   constructor(private activateRoute: ActivatedRoute, private store: Store<AppState>) {
     this.subscription = this.activateRoute.params.subscribe((params) => this.tag = params['tag']);
     this.store.dispatch(new GetTagsLinks(this.tag));
-
     this.header = `Tag: ${this.tag}`;
   }
 

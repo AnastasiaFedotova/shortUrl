@@ -13,7 +13,7 @@
   </div>
   <span *ngIf="!link.tag" class="link__tags link__tags_disabled">-</span>
   <span class="link__views">{{link.view_count || 0}}</span>
-  <span *ngIf="author" class="link__author">{{author}}</span>
+  <span class="link__author">{{author || '-'}}</span>
 </div>
 <div *ngIf="isChange" class="updatedlink">
   <form class="updatedlink__form" [formGroup]="linkForm" (submit)="changeLink(link)">
