@@ -26,6 +26,7 @@ export class LinksListComponent {
           this.links.push({...link});
           return true;
         }
+        this.links.find((link) => link.id === self[index].id).tag += `, ${self[index].tag}`;
       })
     })
   }
