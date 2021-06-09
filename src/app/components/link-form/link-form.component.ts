@@ -7,7 +7,6 @@ import { AppState } from 'src/app/store/state/app.state';
 import { ChangedNameLink } from 'src/app/store/actions/changedShortlinks.actions';
 import { selectedChangedShortLink } from 'src/app/store/selectors/changedShortLinks.selectors';
 import { environment } from './../../../environments/environment';
-import { selectGettedUser } from 'src/app/store/selectors/gettedUser.selectors';
 
 @Component({
   selector: 'app-link-form',
@@ -18,7 +17,6 @@ export class LinkFormComponent implements OnInit {
   @Input() link: ShortLinks;
   linkForm: FormGroup;
   isChange: boolean = false;
-  author: string;
   errorMessage: string;
   links: ShortLinks[];
   linkUrl: string;
@@ -28,10 +26,6 @@ export class LinkFormComponent implements OnInit {
     this.linkForm = new FormGroup({
       'link': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
     });
-
-    this.store.pipe(select(selectGettedUser)).subscribe(user => {
-      this.author = user.login;
-    })
   }
 
   startChangeLinks() {
