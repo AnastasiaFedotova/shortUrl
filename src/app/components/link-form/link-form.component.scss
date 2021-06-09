@@ -63,3 +63,23 @@
     color: $color-text-basic;
   }
 }
+
+.updatedlink {
+  width: 100%;
+  height: 100%;
+  .updatedlink__form {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    box-sizing: border-box;
+    padding: 0 50px;
+    height: 100%;
+    .updatedlink__input {
+      box-sizing: border-box;
+      padding-left: 15px;
+      height: 32px;
+      background-color: $color-text-light;
+      border: 1px solid $color-shadow;
+    }
+  }
+}

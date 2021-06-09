@@ -13,17 +13,16 @@
   </div>
   <span *ngIf="!link.tag" class="link__tags link__tags_disabled">-</span>
   <span class="link__views">{{link.view_count || 0}}</span>
-  <span *ngIf="link.author" class="link__author">{{author}}</span>
+  <span *ngIf="author" class="link__author">{{author}}</span>
 </div>
-<div *ngIf="isChange">
-  <form [formGroup]="linkForm" (submit)="changeLink(link)">
-    <input required placeholder={{linkUrl}} name="link" formControlName="link">
-    <button [disabled]="linkForm.invalid">
+<div *ngIf="isChange" class="updatedlink">
+  <form class="updatedlink__form" [formGroup]="linkForm" (submit)="changeLink(link)">
+    <input class="updatedlink__input" required placeholder={{linkUrl}} name="link" formControlName="link">
+    <button class="updatedlink__btn" [disabled]="linkForm.invalid">
       ok
     </button>
-    <button (click)="cancel()" type="button">
+    <button class="updatedlink__btn updatedlink__btn_cancel" (click)="cancel()" type="button">
       cancel
     </button>
   </form>
-  {{errorMessage}}
 </div>

@@ -66,7 +66,6 @@ export class LinkFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.linkUrl = this.link.short_url;
-
     this.tags = this.link.tag?.split(", ");
   }
 }
