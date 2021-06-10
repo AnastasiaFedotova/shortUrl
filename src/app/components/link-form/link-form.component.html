@@ -19,10 +19,9 @@
   <form class="updatedlink__form" [formGroup]="linkForm" (submit)="changeLink(link)">
     <input class="updatedlink__input" required placeholder={{linkUrl}} name="link" formControlName="link">
     <button class="updatedlink__btn" [disabled]="linkForm.invalid">
-      ok
     </button>
     <button class="updatedlink__btn updatedlink__btn_cancel" (click)="cancel()" type="button">
-      cancel
+      x
     </button>
   </form>
 </div>
