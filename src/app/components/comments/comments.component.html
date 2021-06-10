@@ -1,25 +1,20 @@
 <div class="comments">
   <ul class="comments__list">
     <li class="comments__item" *ngFor="let comment of comments">
-      <span>{{comment.user.login}}</span>
-      <span>{{comment.message}}</span>
+      <span class="comments__author">{{comment.user.login}}:</span>
+      <span class="comments__text">{{comment.message}}</span>
     </li>
   </ul>
   <form class="comments__form" *ngIf="authUser" [formGroup]="commentForm" (submit)="addComment()">
-    <h2 class="comments__author">{{authUser?.login}}</h2>
-    <mat-form-field appearance="outline">
-      <mat-label>{{authUser?.login}}, Enter comment</mat-label>
-      <textarea matInput placeholder="Add comment" required name="link" formControlName="comment"></textarea>
-      <mat-error *ngIf="commentForm.controls.comment.hasError('minLength') &&
-      commentForm.controls.comment.hasError('maxLength') && commentForm.controls.comment.untouched">
-        Add comment
-      </mat-error>
-    </mat-form-field>
-    <button mat-stroked-button  [disabled]="commentForm.invalid">
-      ok
-    </button>
-    <button mat-stroked-button (click)="cancel()" type="button">
-      cancel
-    </button>
+    <h2 class="comments__form-author">{{authUser?.login}}</h2>
+      <textarea class="comments__form-text" placeholder="Add comment" required name="link" formControlName="comment"></textarea>
+      <div class="comments__form-btn-group">
+        <button class="comments__form-btn" [disabled]="commentForm.invalid">
+          ok
+        </button>
+        <button class="comments__form-btn comments__form-btn_cancel" (click)="cancel()" type="button">
+          cancel
+        </button>
+      </div>
   </form>
 </div>

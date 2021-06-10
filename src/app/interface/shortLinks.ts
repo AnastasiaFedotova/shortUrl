@@ -6,4 +6,5 @@ export interface ShortLinks {
   user_id: string | null;
   view_count: number | null;
   tag: string | null;
+  author: string | null;
 }

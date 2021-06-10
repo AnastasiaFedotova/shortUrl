@@ -1,0 +1,75 @@
+@import './../../styles/vars/colors.scss';
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 90%;
+  .comments__list {
+    padding: 0 20px;
+    .comments__item {
+      margin-bottom: 15px;
+      list-style-type: none;
+      .comments__author {
+        font-weight: bold;
+        padding-right: 20px;
+        font-size: 16px;
+        text-transform: capitalize;
+      }
+
+      .comments__text {
+        display: inline-block;
+        min-width: 250px;
+        width: 50%;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .comments__form {
+    .comments__form-author {
+      color: $color-link-form-text;
+      text-transform: capitalize;
+    }
+    .comments__form-text {
+      padding: 10px;
+      width: 50%;
+      min-width: 250px;
+      height: 70px;
+      border-radius: 6px;
+      &:focus {
+        box-shadow: 0px 0px 20px 0px $color-shadow;
+      }
+    }
+
+    .comments__form-btn-group {
+      margin: 10px 0;
+      .comments__form-btn {
+        margin-left: 15px;
+        width: 60px;
+        height: 32px;
+        border-radius: 6px;
+        cursor: pointer;
+        color: $color-text-light;
+        background-color: $color-background-btn;
+        &:hover {
+          color: #f1efef;
+        }
+
+        &:disabled {
+          background-color: $color-disabled-background;
+          color: $color-disabled;
+          cursor: initial;
+        }
+
+        &.comments__form-btn_cancel {
+          background-color: $color-link-form-text;
+        }
+      }
+    }
+  }
+}
