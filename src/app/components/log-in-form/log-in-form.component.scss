@@ -2,6 +2,14 @@
 
 .logIn-form {
   z-index: 11;
+  position: absolute;
+  top: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  transform: translate(0, -50%);
   .logIn-form__input {
     @include auth-input;
   }

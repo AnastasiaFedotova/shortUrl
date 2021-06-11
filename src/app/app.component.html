@@ -15,9 +15,7 @@
   </div>
 </header>
 
-<div *ngIf="!isOpenWindow || isAuthorized">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
 
 <div *ngIf="!isAuthorized && isOpenWindow" class="modal" (click)="isOpenModalWindow(false)">
     <nav class="app-page__nav nav" (click)="$event.stopPropagation()">
@@ -32,6 +30,5 @@
         <input class="nav__link" id="registration" type="radio" name="auth" value="registration" routerLink="/registration">
         <label for="registration">Register</label>
       </div>
-      <router-outlet></router-outlet>
     </nav>
 </div>
