@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comments } from '../interface/comments';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class CommentsService {
     return this.http.get(`${this.urlApi}/${linksId}`);
   }
 
-  addComment(comment: Comments) {
-    return this.http.post(this.urlApi, comment, {
+  addComment(comment: Comments): Observable<string> {
+    return this.http.post<string>(this.urlApi, comment, {
       withCredentials: true
     });
   }

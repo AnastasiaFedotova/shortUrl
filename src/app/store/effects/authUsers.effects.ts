@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { throwError } from 'rxjs';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { GetUsersLinks } from '../actions/usersLinkList.actions';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { UserSessionService } from './../../services/user-session.service';
 import { EGettedAuthUserIdActions, GetAuthUserId } from './../actions/authUsers.actions';
 import { GetUser } from './../actions/gettedUser.actions';

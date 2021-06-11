@@ -7,5 +7,5 @@ export interface AddedCommentState {
 
 export const InitialAddedCommentState: AddedCommentState = {
   comment: null,
-  commentId: null
+  commentId: ''
 }
