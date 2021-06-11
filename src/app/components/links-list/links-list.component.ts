@@ -11,7 +11,7 @@ import { selectUsersLinksList } from 'src/app/store/selectors/usersLinkList.sele
   styleUrls: ['./links-list.component.scss']
 })
 export class LinksListComponent {
-  links: ShortLinks[] = [];
+  links: ShortLinks[];
   header: string = "My Links";
   subtitles: string[] = ["Original link", "Short link", "Tags", "Views", "Author"];
   content: string = "Hello";
@@ -21,6 +21,7 @@ export class LinksListComponent {
 
   ngOnInit() {
     this.store.pipe(select(selectUsersLinksList)).subscribe(value => {
+      this.links = [];
       value.filter((link, index, self) => {
         if (index === self.findIndex((t) => t.id === link.id)) {
           this.links.push({...link});
