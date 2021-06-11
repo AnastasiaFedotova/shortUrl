@@ -1,7 +1,7 @@
 <div class="link" *ngIf="!isChange">
   <a class="link__orig-url" href="{{link.original_url}}" target="_blank">{{link.original_url}}</a>
   <div class="link__form-edit">
-    <a class="link__url" href="{{serverUrl}}/{{linkUrl}}" target="_blank">
+    <a class="link__url" routerLink="./link/{{link.id}}">
       {{linkUrl}}
     </a>
     <button class="link__btn-edit" type="button" (click)="startChangeLinks()"></button>
