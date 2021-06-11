@@ -10,6 +10,7 @@
       <textarea class="comments__form-text" placeholder="Add comment" required name="link" formControlName="comment"></textarea>
       <div class="comments__form-btn-group">
         <button class="comments__form-btn" [disabled]="commentForm.invalid">
+          send
         </button>
         <button class="comments__form-btn comments__form-btn_cancel" (click)="cancel()" type="button">
           x
