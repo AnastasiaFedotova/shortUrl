@@ -80,6 +80,10 @@
       height: 32px;
       background-color: $color-text-light;
       border: 1px solid $color-shadow;
+
+      &.updatedUrl__input_hidden {
+        display: none;
+      }
     }
 
     .updatedlink__btn {

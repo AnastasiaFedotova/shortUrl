@@ -15,8 +15,8 @@ export class UserSessionService {
 
   constructor(private http: HttpClient) { }
 
-  checkSession(): Observable<boolean> {
-    return this.http.get<boolean>(this.urlApiAuth, {
+  checkSession(): Observable<string> {
+    return this.http.get<string>(this.urlApiAuth, {
       withCredentials: true
     })
   }

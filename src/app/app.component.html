@@ -8,13 +8,14 @@
     <img src="./../assets/images/user.png" width="34.38" height="37.22" (click)="isOpenModalWindow(true)">
   </div>
   <div *ngIf="isAuthorized" class="header__auth header__auth_on">
-    <a class="header__auth-link"routerLink="/linkList">{{user?.login}}</a>
+    <a class="header__auth-link" routerLink="/linkList" href="/linkList">{{user?.login}}</a>
     <a class="header__btn-exit " (click)="logOut(); isOpenModalWindow(false)">
       <img src="./../assets/images/exit.png" alt="logOut">
     </a>
   </div>
 </header>
-<div *ngIf="!isOpenWindow">
+
+<div *ngIf="!isOpenWindow || isAuthorized">
   <router-outlet></router-outlet>
 </div>
 

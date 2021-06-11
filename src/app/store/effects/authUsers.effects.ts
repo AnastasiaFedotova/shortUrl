@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { throwError } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+import { GetUsersLinks } from '../actions/usersLinkList.actions';
 import { UserSessionService } from './../../services/user-session.service';
 import { EGettedAuthUserIdActions, GetAuthUserId } from './../actions/authUsers.actions';
+import { GetUser } from './../actions/gettedUser.actions';
 
 @Injectable({ providedIn: "root" })
 export class AuthUserIdEffect {
@@ -11,10 +13,13 @@ export class AuthUserIdEffect {
 
   getAuthUserId$ = createEffect(() => this.actions$.pipe(
     ofType<GetAuthUserId>(EGettedAuthUserIdActions.GetAuthUserId),
-    mergeMap(() => this.authService.checkSession()
+    switchMap(() => this.authService.checkSession()
       .pipe(
         map(userId => ({ type: EGettedAuthUserIdActions.GetAuthUserIdSuccess, payload: userId })),
       )),
+    switchMap(res => [
+      new GetUser(res.payload)
+  ]),
     catchError(err => {
       return throwError(err);
     })

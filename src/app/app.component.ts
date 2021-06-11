@@ -7,8 +7,6 @@ import { Users } from './interface/users';
 import { selectedAuth } from './store/selectors/auth.selectors';
 import { selectGettedUser } from './store/selectors/gettedUser.selectors';
 import { AppState } from './store/state/app.state';
-import { GetUser } from './store/actions/gettedUser.actions';
-import { selectedAuthUserId } from './store/selectors/authUsers.selectors';
 
 @Component({
   selector: 'app-root',
@@ -32,17 +30,13 @@ export class AppComponent {
       this.isAuthorized = val;
     })
 
-    this.store.pipe(select(selectedAuthUserId)).subscribe(id => {
-      if (id) this.store.dispatch(new GetUser(id));
-    })
-
     this.store.pipe(select(selectGettedUser)).subscribe(user => {
-      this.user = user;
+      if (user) this.user = user;
     })
   }
 
   isOpenModalWindow(open: boolean) {
-    if(open) this.router.navigate(['/logIn']);
+    if (open) this.router.navigate(['/logIn']);
     else this.router.navigate(['/']);
     this.isOpenWindow = open;
   }

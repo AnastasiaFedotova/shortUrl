@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { UserRegistrationService } from 'src/app/services/user-registration.service';
 import { OpenSession } from 'src/app/store/actions/auth.actions';
 import { AddUser } from 'src/app/store/actions/users.actions';
+import { selectedAuth } from 'src/app/store/selectors/auth.selectors';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
@@ -69,9 +70,13 @@ export class UserRegestrarionFormComponent implements OnInit {
 
     try {
       this.store.dispatch(new AddUser(user));
-      this.registrationForm.reset();
-      this.router.navigate(['../']);
-      this.store.dispatch(new OpenSession(true));
+
+      this.store.pipe(select(selectedAuth)).subscribe(isAuth=> {
+        if (isAuth) {
+          this.registrationForm.reset();
+          this.router.navigate(['../']);
+        }
+      })
     } catch (error) {
       this.registrationMessage = `Error: registration was not successful`;
       console.log(error);
