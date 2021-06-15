@@ -24,28 +24,73 @@ import { environment } from './../../../environments/environment';
       })),
       transition('left <=> right', [
         group([
-          animate('1s'),
-          /*query('@positioninput', [
+          animate('0.5s'),
+          query('@positioninput', [
             animateChild()
-          ])*/
+          ])
         ])
       ]),
       transition('left <=> middle, middle <=> right', [
         group([
           animate('0.5s'),
-          /*query('@positioninput', [
+          query('@positioninput', [
             animateChild()
-          ])*/
+          ])
         ])
       ])
     ]),
 
     trigger('positioninput', [
-      transition('left <=> right, left <=> middle, middle <=> right', [
-        animate('1s', keyframes([
-
+      state('left', style({
+        textAlign: 'right'
+      })),
+      state('right', style({
+        textAlign: 'left'
+      })),
+      state('middle', style({
+        textAlign: 'center'
+      })),
+      transition('right => left', [
+        animate('0.5s', keyframes([
+          style({padding: '0 0 0 0'}),
+          style({padding: '0 0 0 40%'})
         ]))
-      ])
+      ]),
+
+      transition('left => right', [
+        animate('0.5s', keyframes([
+          style({padding: '0 15% 0 0'}),
+          style({padding: '0 60% 0 0'})
+        ]))
+      ]),
+
+      transition('left => middle', [
+        animate('0.5s', keyframes([
+          style({padding: '0 30% 0 0'}),
+          style({padding: '0 40% 0 0'})
+        ]))
+      ]),
+
+      transition('middle => left', [
+        animate('0.5s', keyframes([
+          style({padding: '0 0 0 20%'}),
+          style({padding: '0 0 0 30%'})
+        ]))
+      ]),
+
+      transition('middle => right', [
+        animate('0.5s', keyframes([
+          style({padding: '0 0 0 0'}),
+          style({padding: '0 30% 0 0'})
+        ]))
+      ]),
+
+      transition('right => middle', [
+        animate('0.5s', keyframes([
+          style({padding: '0 0 0 0'}),
+          style({padding: '0 0 0 20%'})
+        ]))
+      ]),
     ])
   ],
 })
