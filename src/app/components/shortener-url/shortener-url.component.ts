@@ -7,6 +7,8 @@ import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
 import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.selectors';
 import { environment } from './../../../environments/environment';
 
+const animationSetting = '0.4s ease-in';
+
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
@@ -24,7 +26,7 @@ import { environment } from './../../../environments/environment';
       })),
       transition('left <=> right', [
         group([
-          animate('0.5s'),
+          animate(animationSetting),
           query('@positioninput', [
             animateChild()
           ])
@@ -32,7 +34,7 @@ import { environment } from './../../../environments/environment';
       ]),
       transition('left <=> middle, middle <=> right', [
         group([
-          animate('0.5s'),
+          animate(animationSetting),
           query('@positioninput', [
             animateChild()
           ])
@@ -51,42 +53,42 @@ import { environment } from './../../../environments/environment';
         textAlign: 'center'
       })),
       transition('right => left', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 0 0 0'}),
           style({padding: '0 0 0 40%'})
         ]))
       ]),
 
       transition('left => right', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 15% 0 0'}),
           style({padding: '0 60% 0 0'})
         ]))
       ]),
 
       transition('left => middle', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 30% 0 0'}),
           style({padding: '0 40% 0 0'})
         ]))
       ]),
 
       transition('middle => left', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 0 0 20%'}),
           style({padding: '0 0 0 30%'})
         ]))
       ]),
 
       transition('middle => right', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 0 0 0'}),
           style({padding: '0 30% 0 0'})
         ]))
       ]),
 
       transition('right => middle', [
-        animate('0.5s', keyframes([
+        animate(animationSetting, keyframes([
           style({padding: '0 0 0 0'}),
           style({padding: '0 0 0 20%'})
         ]))
