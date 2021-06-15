@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { trigger, state, style, animate, transition, keyframes, query, animateChild, group } from '@angular/animations';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
@@ -9,12 +10,50 @@ import { environment } from './../../../environments/environment';
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
-  styleUrls: ['./shortener-url.component.scss']
+  styleUrls: ['./shortener-url.component.scss'],
+  animations: [
+    trigger('positionform', [
+      state('left', style({
+        transform: 'translate(35%, 0)'
+      })),
+      state('right', style({
+        transform: 'translate(-50%, 0)'
+      })),
+      state('middle', style({
+        transform: 'translate(0, 0)'
+      })),
+      transition('left <=> right', [
+        group([
+          animate('1s'),
+          /*query('@positioninput', [
+            animateChild()
+          ])*/
+        ])
+      ]),
+      transition('left <=> middle, middle <=> right', [
+        group([
+          animate('0.5s'),
+          /*query('@positioninput', [
+            animateChild()
+          ])*/
+        ])
+      ])
+    ]),
+
+    trigger('positioninput', [
+      transition('left <=> right, left <=> middle, middle <=> right', [
+        animate('1s', keyframes([
+
+        ]))
+      ])
+    ])
+  ],
 })
 export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;
   shortLink: string;
   serverUrl: string = environment.serverUrl;
+  position: string = 'middle';
   error: {
     message: string;
   };
@@ -48,6 +87,18 @@ export class ShortenerUrlComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  toRight() {
+    this.position = 'right';
+  }
+
+  toLeft() {
+    this.position = 'left';
+  }
+
+  toMiddle() {
+    this.position = 'middle';
   }
 
   submit() {

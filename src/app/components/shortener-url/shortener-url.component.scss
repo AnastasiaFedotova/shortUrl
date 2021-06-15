@@ -1,5 +1,25 @@
 @import './../../styles/vars/colors.scss';
 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  .container__btn-group {
+    z-index: 10;
+    position: relative;
+    top: 45vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+    .container__btn {
+      cursor: pointer;
+    }
+  }
+}
+
 .shortener-form {
   position: relative;
   top: 40vh;
@@ -63,7 +83,7 @@
   .shortener-form__tags {
     position: absolute;
     bottom: -25px;
-    right: -50px;
+    right: 15px;
     padding: 10px 20px 0px 20px;
     box-shadow: 0px 10px 20px -10px $color-shadow;
     border-radius: 2px;

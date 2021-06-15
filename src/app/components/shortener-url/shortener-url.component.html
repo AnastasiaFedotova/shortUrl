@@ -1,18 +1,31 @@
-<form [formGroup]="shortenerForm" class="shortener-form" (submit)="submit()">
-  <input class="shortener-form__input" type="url" required placeholder="Your link" name="url" formControlName="url">
-  <textarea class="shortener-form__tags" *ngIf="isValidHttpUrl" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
-  <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
-    Generate
-  </button>
-  <div class="shortener-form__text shortener-form__text_err" *ngIf="error?.message">
-    <span>
-      {{error.message}}
-    </span>
+<div class="container">
+  <div class="container__btn-group">
+    <button class="container__btn container__btn_position_right" (click)="toRight()" type="button">
+      &larr;
+    </button>
+    <button class="container__btn container__btn_position_middle" (click)="toMiddle()" type="button">
+      &harr;
+    </button>
+    <button class="container__btn container__btn_position_left" (click)="toLeft()" type="button">
+      &rarr;
+    </button>
   </div>
-  <div class="shortener-form__text" *ngIf="shortLink">
-    <span>
-      Generated link:
-    </span>
-    <a class="shortener-form__short-link" href="{{serverUrl}}/{{shortLink}}" target="_blank">{{shortLink}}</a>
-  </div>
-</form>
+  <form [formGroup]="shortenerForm" class="container__item shortener-form" [@positionform]="position" (submit)="submit()">
+    <input [@positioninput]="position" class="shortener-form__input" type="url" required placeholder="Your link" name="url" formControlName="url">
+    <textarea class="shortener-form__tags" *ngIf="isValidHttpUrl" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
+    <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
+      Generate
+    </button>
+    <div class="shortener-form__text shortener-form__text_err" *ngIf="error?.message">
+      <span>
+        {{error.message}}
+      </span>
+    </div>
+    <div class="shortener-form__text" *ngIf="shortLink">
+      <span>
+        Generated link:
+      </span>
+      <a class="shortener-form__short-link" href="{{serverUrl}}/{{shortLink}}" target="_blank">{{shortLink}}</a>
+    </div>
+  </form>
+</div>
