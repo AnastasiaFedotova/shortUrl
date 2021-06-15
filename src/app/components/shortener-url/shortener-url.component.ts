@@ -24,7 +24,8 @@ const animationSetting = '0.5s ease-in';
       state('middle', style({
         transform: 'translate(0, 0)'
       })),
-      transition('left <=> right', [
+
+      transition('left <=> right, left => middle, right => middle', [
         group([
           animate(animationSetting),
           query('@positioninput', [
@@ -32,14 +33,32 @@ const animationSetting = '0.5s ease-in';
           ])
         ])
       ]),
-      transition('left <=> middle, middle <=> right', [
+
+      transition('middle => right', [
         group([
-          animate(animationSetting),
+          animate(animationSetting, keyframes([
+            style({
+              transform: 'translate(-50%, 0)'
+            }),
+          ])),
           query('@positioninput', [
             animateChild()
           ])
         ])
-      ])
+      ]),
+
+      transition('middle => left', [
+        group([
+          animate(animationSetting, keyframes([
+            style({
+              transform: 'translate(35%, 0)'
+            }),
+          ])),
+          query('@positioninput', [
+            animateChild()
+          ])
+        ])
+      ]),
     ]),
 
     trigger('positioninput', [
@@ -52,6 +71,7 @@ const animationSetting = '0.5s ease-in';
       state('middle', style({
         textAlign: 'center'
       })),
+
       transition('right => left', [
         animate(animationSetting, keyframes([
           style({padding: '0 0 0 0'}),
