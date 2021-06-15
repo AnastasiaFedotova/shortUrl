@@ -7,7 +7,7 @@ import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
 import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.selectors';
 import { environment } from './../../../environments/environment';
 
-const animationSetting = '0.4s ease-in';
+const animationSetting = '0.5s ease-in';
 
 @Component({
   selector: 'app-shortener-url',
@@ -100,7 +100,7 @@ export class ShortenerUrlComponent implements OnInit {
   shortenerForm: FormGroup;
   shortLink: string;
   serverUrl: string = environment.serverUrl;
-  position: string = 'middle';
+  position: string = localStorage.getItem('formPosition') || null;
   error: {
     message: string;
   };
@@ -138,14 +138,17 @@ export class ShortenerUrlComponent implements OnInit {
 
   toRight() {
     this.position = 'right';
+    localStorage.setItem('formPosition', this.position);
   }
 
   toLeft() {
     this.position = 'left';
+    localStorage.setItem('formPosition', this.position);
   }
 
   toMiddle() {
     this.position = 'middle';
+    localStorage.setItem('formPosition', this.position);
   }
 
   submit() {
