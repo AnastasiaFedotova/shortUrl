@@ -1,9 +1,12 @@
 import { trigger, state, style, animate, transition, keyframes, query, animateChild, group, AnimationStyleMetadata } from '@angular/animations';
 
 const animationSetting: string = '0.5s';
-const indentTextEnd: string = '220px';
-const indentTextMiddle: string = '110px';
 const indentTextStart: string = '10px';
+const indentTextMiddle: string = '110px';
+const indentTextEnd: string = '220px';
+const startIndent: number = 10;
+const middleIndent: number = 110;
+const endIndent: number = 220;
 
 function shiftIndent(start: number, end: number): Array<AnimationStyleMetadata> {
   const minIndent = 5;
@@ -115,27 +118,27 @@ export default [
     })),
 
     transition('left => right', [
-      animate(animationSetting, keyframes(shiftIndent(10, 220)))
+      animate(animationSetting, keyframes(shiftIndent(startIndent, endIndent)))
     ]),
 
     transition('right => left', [
-      animate(animationSetting, keyframes(shiftIndent(220, 10)))
+      animate(animationSetting, keyframes(shiftIndent(endIndent, startIndent)))
     ]),
 
     transition('right => middle', [
-      animate(animationSetting, keyframes(shiftIndent(220, 110)))
+      animate(animationSetting, keyframes(shiftIndent(endIndent, middleIndent)))
     ]),
 
     transition('middle => right', [
-      animate(animationSetting, keyframes(shiftIndent(110, 220)))
+      animate(animationSetting, keyframes(shiftIndent(middleIndent, endIndent)))
     ]),
 
     transition('middle => left', [
-      animate(animationSetting, keyframes(shiftIndent(110, 10)))
+      animate(animationSetting, keyframes(shiftIndent(middleIndent, startIndent)))
     ]),
 
     transition('left => middle', [
-      animate(animationSetting, keyframes(shiftIndent(10, 110)))
+      animate(animationSetting, keyframes(shiftIndent(startIndent, middleIndent)))
     ]),
   ])
 ]
