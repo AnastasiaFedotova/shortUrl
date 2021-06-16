@@ -9,12 +9,12 @@ const middleIndent: number = 110;
 const endIndent: number = 220;
 
 function shiftIndent(start: number, end: number): Array<AnimationStyleMetadata> {
-  const minIndent = 5;
+  const minIndent = 2;
   let styles = [];
 
   if (start < end) {
     for (let i = start; i < end; i += minIndent) {
-      styles.push(style({ textIndent: i }))
+      styles.push(style({ textIndent: `${i}px` }))
     }
   } else {
     for (let i = start; i > end; i -= minIndent) {
@@ -114,31 +114,61 @@ export default [
       textAlign: 'left'
     })),
     state('middle', style({
-      textIndent: indentTextMiddle
+      textIndent: indentTextMiddle,
+      textAlign: 'initial'
     })),
 
     transition('left => right', [
-      animate(animationSetting, keyframes(shiftIndent(startIndent, endIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(startIndent, endIndent)
+        ])
+      )
     ]),
 
     transition('right => left', [
-      animate(animationSetting, keyframes(shiftIndent(endIndent, startIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(endIndent, startIndent)
+        ])
+      )
     ]),
 
     transition('right => middle', [
-      animate(animationSetting, keyframes(shiftIndent(endIndent, middleIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(endIndent, middleIndent)
+        ])
+      )
     ]),
 
     transition('middle => right', [
-      animate(animationSetting, keyframes(shiftIndent(middleIndent, endIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(middleIndent, endIndent)
+        ])
+      )
     ]),
 
     transition('middle => left', [
-      animate(animationSetting, keyframes(shiftIndent(middleIndent, startIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(middleIndent, startIndent)
+        ])
+      )
     ]),
 
     transition('left => middle', [
-      animate(animationSetting, keyframes(shiftIndent(startIndent, middleIndent)))
+      animate(animationSetting,
+        keyframes([
+          style({ textAlign: 'initial' }),
+          ...shiftIndent(startIndent, middleIndent)])
+      )
     ]),
   ])
 ]
