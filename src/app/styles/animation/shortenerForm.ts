@@ -1,4 +1,4 @@
-import { trigger, state, style, animate, transition, keyframes, query, animateChild, group, AnimationStyleMetadata, animation, useAnimation } from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes, query, animateChild, group } from '@angular/animations';
 
 const animationSetting: string = '0.5s';
 
