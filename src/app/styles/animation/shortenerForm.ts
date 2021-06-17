@@ -1,4 +1,4 @@
-import { trigger, state, style, animate, transition, keyframes, query, animateChild, group, AnimationStyleMetadata } from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes, query, animateChild, group, AnimationStyleMetadata, animation, useAnimation } from '@angular/animations';
 
 const animationSetting: string = '0.5s';
 const indentTextStart: string = '10px';
@@ -8,7 +8,7 @@ const startIndent: number = 10;
 const middleIndent: number = 110;
 const endIndent: number = 220;
 
-function shiftIndent(start: number, end: number): Array<AnimationStyleMetadata> {
+function shiftIndent(start: number, end:number): Array<AnimationStyleMetadata> {
   const minIndent = 2;
   let styles = [];
 
@@ -25,6 +25,10 @@ function shiftIndent(start: number, end: number): Array<AnimationStyleMetadata> 
 
   return styles;
 }
+
+export const transitionAnimation = animation([
+  animate(animationSetting)
+]);
 
 export default [
   trigger('positionform', [
@@ -106,69 +110,15 @@ export default [
 
   trigger('positioninput', [
     state('right', style({
-      textIndent: indentTextEnd,
-      textAlign: 'right'
-    })),
+      textIndent: '{{right}}px'
+    }), {params: {right: '0px'}}),
     state('left', style({
-      textIndent: indentTextStart,
-      textAlign: 'left'
-    })),
+      textIndent: '{{left}}px'
+    }), {params: {left: '0px'}}),
     state('middle', style({
-      textIndent: indentTextMiddle,
-      textAlign: 'initial'
-    })),
+      textIndent: '{{middle}}px'
+    }), {params: {middle: '0px'}}),
 
-    transition('left => right', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(startIndent, endIndent)
-        ])
-      )
-    ]),
-
-    transition('right => left', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(endIndent, startIndent)
-        ])
-      )
-    ]),
-
-    transition('right => middle', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(endIndent, middleIndent)
-        ])
-      )
-    ]),
-
-    transition('middle => right', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(middleIndent, endIndent)
-        ])
-      )
-    ]),
-
-    transition('middle => left', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(middleIndent, startIndent)
-        ])
-      )
-    ]),
-
-    transition('left => middle', [
-      animate(animationSetting,
-        keyframes([
-          style({ textAlign: 'initial' }),
-          ...shiftIndent(startIndent, middleIndent)])
-      )
-    ]),
+    transition('* <=> *', animate(animationSetting))
   ])
 ]

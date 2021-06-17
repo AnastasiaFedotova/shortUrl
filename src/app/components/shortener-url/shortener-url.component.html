@@ -11,9 +11,9 @@
     </button>
   </div>
   <form [formGroup]="shortenerForm" class="container__item shortener-form" [@positionform]="position" (submit)="submit()">
-    <input [@positioninput]="position" class="shortener-form__input" type="url" required placeholder="Your link" name="url" formControlName="url">
+    <input [@positioninput]="{value: position, params:{left: startIndent, right: endIndent, middle: middleIndent}}" class="shortener-form__input" type="url" #shortenerInput required placeholder="Your link" name="url" formControlName="url">
     <textarea class="shortener-form__tags" *ngIf="isValidHttpUrl" placeholder="Enter your tags" name="tags" formControlName="tags"></textarea>
-    <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid">
+    <button class="shortener-form__btn" type="submit" [disabled]="shortenerForm.invalid" #shortenerBtn>
       Generate
     </button>
     <div class="shortener-form__text shortener-form__text_err" *ngIf="error?.message">

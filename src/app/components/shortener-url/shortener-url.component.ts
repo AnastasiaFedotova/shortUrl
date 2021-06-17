@@ -1,20 +1,25 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import { AddLink } from 'src/app/store/actions/addedShortlinks.actions';
 import { selectedAddedShortLink } from 'src/app/store/selectors/addedShortLinks.selectors';
 import { environment } from './../../../environments/environment';
-import animation from './../../styles/animation/shortenerForm';
+import formAnimation from './../../styles/animation/shortenerForm';
 
 @Component({
   selector: 'app-shortener-url',
   templateUrl: './shortener-url.component.html',
   styleUrls: ['./shortener-url.component.scss'],
-  animations: animation
+  animations: formAnimation
 })
 
-export class ShortenerUrlComponent implements OnInit {
+export class ShortenerUrlComponent implements AfterViewInit {
+  @ViewChild('shortenerInput') shortenerInput;
+  @ViewChild('shortenerBtn') shortenerBtn;
+  endIndent: number = 0;
+  startIndent: number = 0;
+  middleIndent: number = 0;
   shortenerForm: FormGroup;
   shortLink: string;
   serverUrl: string = environment.serverUrl;
@@ -51,7 +56,13 @@ export class ShortenerUrlComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    const indentBetweenElement = 30;
+    let input = this.shortenerInput.nativeElement;
+    let button = this.shortenerBtn.nativeElement;
+
+    this.endIndent = input.clientWidth - button.clientWidth - indentBetweenElement;
+    this.middleIndent = this.endIndent / 2;
   }
 
   toRight() {
