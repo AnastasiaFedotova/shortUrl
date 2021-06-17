@@ -1,34 +1,6 @@
 import { trigger, state, style, animate, transition, keyframes, query, animateChild, group, AnimationStyleMetadata, animation, useAnimation } from '@angular/animations';
 
 const animationSetting: string = '0.5s';
-const indentTextStart: string = '10px';
-const indentTextMiddle: string = '110px';
-const indentTextEnd: string = '220px';
-const startIndent: number = 10;
-const middleIndent: number = 110;
-const endIndent: number = 220;
-
-function shiftIndent(start: number, end:number): Array<AnimationStyleMetadata> {
-  const minIndent = 2;
-  let styles = [];
-
-  if (start < end) {
-    for (let i = start; i < end; i += minIndent) {
-      styles.push(style({ textIndent: `${i}px` }))
-    }
-  } else {
-    for (let i = start; i > end; i -= minIndent) {
-      styles.push(style({ textIndent: `${i}px` }))
-    }
-  }
-
-
-  return styles;
-}
-
-export const transitionAnimation = animation([
-  animate(animationSetting)
-]);
 
 export default [
   trigger('positionform', [
