@@ -82,23 +82,28 @@ export default [
 
   trigger('positioninput', [
     state('right', style({
-      textIndent: '{{right}}px',
+      textIndent: '0px',
       textAlign: 'right'
     }), {params: {right: '{{right}}px'}}),
     state('left', style({
-      textIndent: '{{left}}px',
+      textIndent: '0px',
       textAlign: 'left'
     }), {params: {left: '{{left}}px'}}),
     state('middle', style({
-      textIndent: '{{middle}}px',
-      textAlign: 'initial'
-    }), {params: {middle: '{{middle}}px'}}),
+      textIndent: '0px',
+      textAlign: 'center'
+    }), {params: {left: '{{left}}px'}}),
 
     transition('left => right', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{right}}px' }),
+          style({
+            textIndent: '{{left}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{right}}px'
+          }),
         ])
       )
     ]),
@@ -106,8 +111,13 @@ export default [
     transition('left => middle', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{middle}}px' }),
+          style({
+            textIndent: '{{left}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{middle}}px'
+          }),
         ])
       )
     ]),
@@ -115,8 +125,13 @@ export default [
     transition('right => left', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{left}}px' }),
+          style({
+            textIndent: '{{right}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{left}}px'
+          }),
         ])
       )
     ]),
@@ -124,8 +139,13 @@ export default [
     transition('right => middle', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{middle}}px' }),
+          style({
+            textIndent: '{{right}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{middle}}px'
+          }),
         ])
       )
     ]),
@@ -133,8 +153,13 @@ export default [
     transition('middle => right', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{right}}px' }),
+          style({
+            textIndent: '{{middle}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{right}}px'
+          }),
         ])
       )
     ]),
@@ -142,8 +167,13 @@ export default [
     transition('middle => left', [
       animate(animationSetting,
         keyframes([
-          style({ textAlign: 'initial' }),
-          style({ textIndent: '{{left}}px' }),
+          style({
+            textIndent: '{{middle}}px',
+            textAlign: 'left'
+          }),
+          style({
+            textIndent: '{{left}}px'
+          })
         ])
       )
     ]),
