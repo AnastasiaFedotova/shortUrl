@@ -1,0 +1,10 @@
+<div>
+  <h1>Tag: {{tag}}</h1>
+  <ul>
+    <li *ngFor="let link of links">
+      <a routerLink="../link/{{link.id}}">
+        {{link.short_url}}
+      </a>
+    </li>
+  </ul>
+</div>
